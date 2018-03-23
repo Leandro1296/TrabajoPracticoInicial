@@ -21,7 +21,7 @@ public class Vista
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle","Altura","Piso","Departamento","Localidad","Mail", "Cumpleaños", "Tipo"};
 
 	public Vista() 
 	{
@@ -36,6 +36,7 @@ public class Vista
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 434, 262);

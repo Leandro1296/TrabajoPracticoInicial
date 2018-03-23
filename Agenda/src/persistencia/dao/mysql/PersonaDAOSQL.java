@@ -12,8 +12,9 @@ import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, calle, altura, piso, departamento, localidad, mail, cumpleaños, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
+	private static final String update = "UPDATE personas SET Nombre = ?, Telefono = ?, Calle = ?, Altura = ?, Piso = ?, Departamento = ?, Localidad = ?, Mail = ?, Cumpleaños = ?, Tipo = ?) WHERE ID = ? ";
 	private static final String readall = "SELECT * FROM personas";
 		
 	public boolean insert(PersonaDTO persona)
@@ -26,6 +27,14 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setInt(1, persona.getIdPersona());
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
+			statement.setString(4, persona.getCalle());
+			statement.setInt(5, persona.getAltura());
+			statement.setInt(6, persona.getPiso());
+			statement.setString(7, persona.getDpto());
+			statement.setString(8, persona.getLocalidad());
+			statement.setString(9, persona.getMail());
+			statement.setString(10, persona.getCumpleaños());
+			statement.setString(11, persona.getTipo());
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
@@ -56,6 +65,12 @@ public class PersonaDAOSQL implements PersonaDAO
 		return false;
 	}
 	
+	@Override
+	public boolean edit(PersonaDTO persona_a_eliminar) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	public List<PersonaDTO> readAll()
 	{
 		PreparedStatement statement;
@@ -69,7 +84,17 @@ public class PersonaDAOSQL implements PersonaDAO
 			
 			while(resultSet.next())
 			{
-				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono")));
+				personas.add(new PersonaDTO(resultSet.getInt("idPersona"), 
+											resultSet.getString("Nombre"), 
+											resultSet.getString("Telefono"),
+											resultSet.getString("Calle"),
+											resultSet.getInt("Altura"),
+											resultSet.getInt("Piso"),
+											resultSet.getString("Departamento"),
+											resultSet.getString("Localidad"),
+											resultSet.getString("Mail"),
+											resultSet.getString("Cumpleaños"),
+											resultSet.getString("Tipo")));
 			}
 		} 
 		catch (SQLException e) 
@@ -78,4 +103,6 @@ public class PersonaDAOSQL implements PersonaDAO
 		}
 		return personas;
 	}
+
+	
 }
