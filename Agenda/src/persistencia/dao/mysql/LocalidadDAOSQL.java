@@ -13,7 +13,7 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOSQL implements LocalidadDAO {
 	
-	private static final String insert = "INSERT INTO localidades(nombre) VALUES(?,?)";
+	private static final String insert = "INSERT INTO localidades(nombre,idLocalidad) VALUES(?,?)";
 	private static final String delete = "DELETE FROM localidades WHERE nombre = ?";
 	private static final String update = "UPDATE localidades SET Nombre = ? WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";

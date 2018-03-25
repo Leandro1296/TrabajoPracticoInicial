@@ -12,7 +12,7 @@ import persistencia.dao.interfaz.TipoDeContactoDAO;
 
 public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 	
-	private static final String insert = "INSERT INTO tiposDeContacto(tipo) VALUES(?,?)";
+	private static final String insert = "INSERT INTO tiposDeContacto(tipo, idTipoDeContacto) VALUES(?,?)";
 	private static final String delete = "DELETE FROM tiposDeContacto WHERE tipo = ?";
 	private static final String update = "UPDATE tiposDeContacto SET Tipo = ? WHERE idTipoDeContacto = ?";
 	private static final String readall = "SELECT * FROM tiposDeContacto";

@@ -128,23 +128,5 @@ public class VentanaLocalidad extends JDialog
 	
 	public JScrollPane getScrollPane(){return this.scrollLista;}
 	
-//	@Override
-//	public void actionPerformed(ActionEvent evento) {
-//		if (evento.getSource() == btnModificar) {
-//			String usuario = listaNombres.getSelectedValue();		
-//			if (usuario != null) {
-//				modificar(usuario);
-//			} else {
-//				avisarError();
-//			}
-//		} else if (evento.getSource() == btnEliminar) {
-//			String usuario = listaNombres.getSelectedValue();
-//			if (usuario != null) {
-//				eliminar(usuario);
-//			} else {
-//				avisarError();
-//			}
-//		}		
-//	}
 }
  

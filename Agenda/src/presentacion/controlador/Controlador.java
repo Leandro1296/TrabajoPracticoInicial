@@ -113,7 +113,9 @@ public class Controlador implements ActionListener, MouseListener
 			}
 			else if(e.getSource() == this.vista.getBtnTiposDecontacto())
 			{				
-				this.ventanaTipoDeContacto = new VentanaTipoDeContacto();
+				this.ventanaTipoDeContacto = VentanaTipoDeContacto.getVentana(this);
+				cargarTiposDeContactoEnLista();
+				this.ventanaTipoDeContacto.getJList().addMouseListener(this);
 			}
 			else if(this.ventanaPersona != null && e.getSource() == this.ventanaPersona.getBtnGuardar())
 			{
@@ -123,7 +125,7 @@ public class Controlador implements ActionListener, MouseListener
 				cerrarVentana();
 			}
 			
-			else if(e.getSource() == this.ventanaLocalidad.getBtnAgregar()) 
+			else if(this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar()) 
 			{
 				LocalidadDTO nuevaLocalidad = new LocalidadDTO(this.ventanaLocalidad.getTxtNombre().getText(),0);
 				this.agenda.agregarLocalidad(nuevaLocalidad);
@@ -131,7 +133,7 @@ public class Controlador implements ActionListener, MouseListener
 				cargarLocalidadesEnLista();
 			}
 			
-			else if (e.getSource() == this.ventanaLocalidad.getBtnModificar()) 
+			else if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnModificar()) 
 			{
 				String localidad = this.ventanaLocalidad.getJList().getSelectedValue();	 
 				if (localidad != null) {
@@ -144,7 +146,7 @@ public class Controlador implements ActionListener, MouseListener
 				
 				}
 			} 
-			else if(e.getSource() == this.ventanaLocalidad.getBtnEliminar()) {
+			else if(this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnEliminar()) {
 				String localidad = this.ventanaLocalidad.getJList().getSelectedValue();
 				if (localidad != null) {
 					this.agenda.borrarLocalidad(this.localidades.get(buscarLocalidad(localidad)));
@@ -152,6 +154,46 @@ public class Controlador implements ActionListener, MouseListener
 					cargarLocalidadesEnLista();
 				}
 			}
+			
+			else if(e.getSource() == this.ventanaTipoDeContacto.getBtnAgregar()) 
+			{
+				TipoDeContactoDTO nuevoTipoDeContacto = new TipoDeContactoDTO(this.ventanaTipoDeContacto.getTxtNombre().getText(),0);
+				this.agenda.agregarTipoDeContacto(nuevoTipoDeContacto);
+				this.cargarDatos();
+				cargarTiposDeContactoEnLista();
+			}
+			
+			else if (e.getSource() == this.ventanaTipoDeContacto.getBtnModificar()) 
+			{
+				String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();	 
+				if (tipoDeContacto != null) {
+					TipoDeContactoDTO tipoDeContacto_a_modificar= this.tiposDeContacto.get(buscar(tipoDeContacto));
+					tipoDeContacto_a_modificar.setTipo(this.ventanaTipoDeContacto.getTxtNombre().getText());
+					this.agenda.modificarTipoDeContacto(tipoDeContacto_a_modificar);
+					this.cargarDatos();
+					cargarTiposDeContactoEnLista();
+				} else {
+				
+				}
+			} 
+			else if(e.getSource() == this.ventanaTipoDeContacto.getBtnEliminar()) {
+				String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();
+				if (tipoDeContacto != null) {
+					this.agenda.borrarTipoDeContacto(this.tiposDeContacto.get(buscar(tipoDeContacto)));
+					this.cargarDatos();
+					cargarTiposDeContactoEnLista();
+				}
+			}
+		}
+
+		private void cargarTiposDeContactoEnLista() 
+		{
+			this.ventanaTipoDeContacto.getModelo().clear();
+			List<TipoDeContactoDTO> TipoDeContactoesOB = this.agenda.obtenerTiposDeContacto();
+			for (TipoDeContactoDTO tipoDeContacto : TipoDeContactoesOB){
+				this.ventanaTipoDeContacto.getModelo().addElement(tipoDeContacto.getTipo());
+			}
+			this.ventanaTipoDeContacto.getJList().setModel(this.ventanaTipoDeContacto.getModelo());
 		}
 
 		public void cargarDatos()
@@ -173,6 +215,18 @@ public class Controlador implements ActionListener, MouseListener
 			return -1;
 		}
 
+		private int buscar(String tipoDeContacto) {
+			List<TipoDeContactoDTO> TipoDeContactoBD = this.agenda.obtenerTiposDeContacto();
+			for(TipoDeContactoDTO tipo: TipoDeContactoBD)
+			{
+				if(tipoDeContacto.equals(tipo.getTipo()))
+				{
+					return TipoDeContactoBD.indexOf(tipo);
+				}
+			}
+			return -1;
+		}
+		
 		private void agregarNuevaPersona() 
 		{
 			PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), 
@@ -309,13 +363,14 @@ public class Controlador implements ActionListener, MouseListener
 				if(unaFilaSeleccionada()){ setBotonHabilitado(this.vista.getBtnEditar(), true); }
 				else{ setBotonHabilitado(this.vista.getBtnEditar(),false); }
 			}
-			else if (e.getSource() == this.ventanaLocalidad.getJList()){
+			else if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getJList()){
 				String localidad = this.ventanaLocalidad.getJList().getSelectedValue();
 				if (localidad != null) { this.ventanaLocalidad.getTxtNombre().setText(localidad); }
 			}
-//			else if (e.getSource() == this.ventanaTipoDeContacto.getJList()){
-//				
-//			}
+			else if (e.getSource() == this.ventanaTipoDeContacto.getJList()){
+				String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();
+				if (tipoDeContacto != null) { this.ventanaTipoDeContacto.getTxtNombre().setText(tipoDeContacto); }
+			}
 		}
 
 		@Override
