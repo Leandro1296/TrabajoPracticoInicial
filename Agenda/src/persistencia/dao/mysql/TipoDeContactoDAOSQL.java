@@ -12,9 +12,9 @@ import persistencia.dao.interfaz.TipoDeContactoDAO;
 
 public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 	
-	private static final String insert = "INSERT INTO tiposDeContacto(tipo) VALUES(?)";
+	private static final String insert = "INSERT INTO tiposDeContacto(tipo) VALUES(?,?)";
 	private static final String delete = "DELETE FROM tiposDeContacto WHERE tipo = ?";
-	private static final String update = "UPDATE tiposDeContacto SET Tipo = ? WHERE tipo = ?";
+	private static final String update = "UPDATE tiposDeContacto SET Tipo = ? WHERE idTipoDeContacto = ?";
 	private static final String readall = "SELECT * FROM tiposDeContacto";
 
 	@Override
@@ -26,6 +26,7 @@ public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 		{
 			statement = conexion.getSQLConexion().prepareStatement(insert);
 			statement.setString(1, tipoDeContacto.getTipo());
+			statement.setInt(2, tipoDeContacto.getIdTipoDeContacto());
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
@@ -58,8 +59,22 @@ public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 	}
 	
 	@Override
-	public boolean edit(TipoDeContactoDTO tipoDeContacto_a_editar) {
-		// TODO Auto-generated method stub
+	public boolean edit(TipoDeContactoDTO tipoDeContacto_a_editar) 
+	{
+		PreparedStatement statement;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, tipoDeContacto_a_editar.getTipo());
+			statement.setInt(2, tipoDeContacto_a_editar.getIdTipoDeContacto());
+			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
+				return true;
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -76,7 +91,7 @@ public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 			
 			while(resultSet.next())
 			{
-				tiposDeContacto.add(new TipoDeContactoDTO(resultSet.getString("Tipo")));
+				tiposDeContacto.add(new TipoDeContactoDTO(resultSet.getString("Tipo"), resultSet.getInt("idTipoDeContacto")));
 			}
 		} 
 		catch (SQLException e) 

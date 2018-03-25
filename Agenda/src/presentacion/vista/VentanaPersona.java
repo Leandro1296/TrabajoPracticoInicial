@@ -1,6 +1,5 @@
 package presentacion.vista;
 
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,8 +17,10 @@ public class VentanaPersona extends JFrame
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
-	private JButton btnAgregarPersona;
+	private JButton btnGuardar;
 	private Controlador controlador;
+	private JLabel lblNombreYApellido;
+	private JLabel lblTelfono;
 	private JLabel lblCalle;
 	private JLabel lblAltura;
 	private JLabel lblPiso;
@@ -54,11 +55,27 @@ public class VentanaPersona extends JFrame
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
+		labels(panel);
+		txtFields(panel);
+		cmBoxes(panel);
+		buttons(panel);
+		
+		this.setVisible(true);
+	}
+
+	private void buttons(JPanel panel) {
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(this.controlador);
+		btnGuardar.setBounds(208, 417, 89, 23);
+		panel.add(btnGuardar);
+	}
+
+	private void labels(JPanel panel) {
+		lblNombreYApellido = new JLabel("Nombre y apellido");
 		lblNombreYApellido.setBounds(10, 11, 113, 14);
 		panel.add(lblNombreYApellido);
 		
-		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
+		lblTelfono = new JLabel("Tel\u00E9fono");
 		lblTelfono.setBounds(10, 52, 113, 14);
 		panel.add(lblTelfono);
 		
@@ -93,7 +110,9 @@ public class VentanaPersona extends JFrame
 		lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(10, 391, 113, 14);
 		panel.add(lblTipo);
-		
+	}
+
+	private void txtFields(JPanel panel) {
 		txtNombre = new JTextField();
 		txtNombre.setBounds(133, 8, 164, 20);
 		panel.add(txtNombre);
@@ -103,11 +122,6 @@ public class VentanaPersona extends JFrame
 		txtTelefono.setBounds(133, 49, 164, 20);
 		panel.add(txtTelefono);
 		txtTelefono.setColumns(10);
-		
-		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.addActionListener(this.controlador);
-		btnAgregarPersona.setBounds(208, 417, 89, 23);
-		panel.add(btnAgregarPersona);
 		
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
@@ -138,7 +152,9 @@ public class VentanaPersona extends JFrame
 		txtCumpleaños.setColumns(10);
 		txtCumpleaños.setBounds(133, 332, 164, 20);
 		panel.add(txtCumpleaños);
-		
+	}
+
+	private void cmBoxes(JPanel panel) {
 		cmBxLocalidad = new JComboBox<>();
 		cmBxLocalidad.addItem("Seleccionar Localidad...");
 		cmBxLocalidad.setBounds(133, 226, 164, 20);
@@ -148,8 +164,6 @@ public class VentanaPersona extends JFrame
 		cmBxTipoDeContacto.addItem("Seleccionar tipo de contacto...");
 		cmBxTipoDeContacto.setBounds(133, 385, 164, 20);
 		panel.add(cmBxTipoDeContacto);
-		
-		this.setVisible(true);
 	}
 	
 	public JTextField getTxtNombre() 
@@ -187,9 +201,9 @@ public class VentanaPersona extends JFrame
 		return txtCumpleaños;
 	}
 
-	public JButton getBtnAgregarPersona() 
+	public JButton getBtnGuardar() 
 	{
-		return btnAgregarPersona;
+		return btnGuardar;
 	}
 	
 	public JComboBox<String> getCmbxLocalidad()

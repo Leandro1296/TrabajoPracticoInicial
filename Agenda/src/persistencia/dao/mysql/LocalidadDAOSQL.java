@@ -13,9 +13,9 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOSQL implements LocalidadDAO {
 	
-	private static final String insert = "INSERT INTO localidades(nombre) VALUES(?, ?)";
+	private static final String insert = "INSERT INTO localidades(nombre) VALUES(?,?)";
 	private static final String delete = "DELETE FROM localidades WHERE nombre = ?";
-	private static final String update = "UPDATE localidades SET Nombre = ? WHERE Nombre = ?";
+	private static final String update = "UPDATE localidades SET Nombre = ? WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";
 
 	@Override
@@ -26,6 +26,7 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 		{
 			statement = conexion.getSQLConexion().prepareStatement(insert);
 			statement.setString(1, localidad.getNombre());
+			statement.setInt(2, localidad.getIdLocalidad());
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
@@ -58,8 +59,22 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 	}
 	
 	@Override
-	public boolean edit(LocalidadDTO localidad_a_editar) {
-		// TODO Auto-generated method stub
+	public boolean edit(LocalidadDTO localidad_a_editar) 
+	{
+		PreparedStatement statement;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, localidad_a_editar.getNombre());
+			statement.setInt(2, localidad_a_editar.getIdLocalidad());
+			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
+				return true;
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -76,7 +91,7 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 			
 			while(resultSet.next())
 			{
-				localidades.add(new LocalidadDTO(resultSet.getString("Nombre")));
+				localidades.add(new LocalidadDTO(resultSet.getString("Nombre"), resultSet.getInt("idLocalidad")));
 			}
 		} 
 		catch (SQLException e) 

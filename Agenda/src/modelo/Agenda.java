@@ -28,10 +28,15 @@ public class Agenda
 	{
 		this.persona.insert(nuevaPersona);
 	}
-
+	
 	public void borrarPersona(PersonaDTO persona_a_eliminar) 
 	{
 		this.persona.delete(persona_a_eliminar);
+	}
+	
+	public void modificarPersona(PersonaDTO persona_a_modificar) 
+	{
+		this.persona.edit(persona_a_modificar);
 	}
 	
 	public List<PersonaDTO> obtenerPersonas()
@@ -39,9 +44,39 @@ public class Agenda
 		return this.persona.readAll();		
 	}
 	
+	public void agregarLocalidad(LocalidadDTO nuevaLocalidad)
+	{
+		this.localidad.insert(nuevaLocalidad);
+	}
+	
+	public void borrarLocalidad(LocalidadDTO localidad_a_eliminar) 
+	{
+		this.localidad.delete(localidad_a_eliminar);
+	}
+	
+	public void modificarLocalidad(LocalidadDTO localidad_a_modificar) 
+	{
+		this.localidad.edit(localidad_a_modificar);
+	}
+	
 	public List<LocalidadDTO> obtenerLocalidades()
 	{
 		return this.localidad.readAll();
+	}
+	
+	public void agregarTipoDeContacto(TipoDeContactoDTO nuevaTipoDeContacto)
+	{
+		this.tipoDeContacto.insert(nuevaTipoDeContacto);
+	}
+	
+	public void borrarTipoDeContacto(TipoDeContactoDTO tipoDeContacto_a_eliminar) 
+	{
+		this.tipoDeContacto.delete(tipoDeContacto_a_eliminar);
+	}
+	
+	public void modificarTipoDeContacto(TipoDeContactoDTO tipoDeContacto_a_modificar) 
+	{
+		this.tipoDeContacto.edit(tipoDeContacto_a_modificar);
 	}
 	
 	public List<TipoDeContactoDTO> obtenerTiposDeContacto()
