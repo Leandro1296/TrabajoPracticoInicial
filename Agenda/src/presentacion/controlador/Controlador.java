@@ -31,6 +31,7 @@ public class Controlador implements ActionListener, MouseListener
 		private VentanaLocalidad ventanaLocalidad;
 		private VentanaTipoDeContacto ventanaTipoDeContacto;
 		private Agenda agenda;
+		private CalculadoraHoroscopoChino calculadoraHoroscopoChino;
 		private boolean seAgregaNueva;
 		
 		public Controlador(Vista vista, Agenda agenda)
@@ -127,63 +128,87 @@ public class Controlador implements ActionListener, MouseListener
 			
 			else if(this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar()) 
 			{
-				LocalidadDTO nuevaLocalidad = new LocalidadDTO(this.ventanaLocalidad.getTxtNombre().getText(),0);
-				this.agenda.agregarLocalidad(nuevaLocalidad);
-				this.cargarDatos();
-				cargarLocalidadesEnLista();
+				agregarNuevaLocalidad();
 			}
 			
 			else if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnModificar()) 
 			{
-				String localidad = this.ventanaLocalidad.getJList().getSelectedValue();	 
-				if (localidad != null) {
-					LocalidadDTO localidad_a_modificar= this.localidades.get(buscarLocalidad(localidad));
-					localidad_a_modificar.setNombre(this.ventanaLocalidad.getTxtNombre().getText());
-					this.agenda.modificarLocalidad(localidad_a_modificar);
-					this.cargarDatos();
-					cargarLocalidadesEnLista();
-				} else {
-				
-				}
+				modificarLocalidad();
 			} 
 			else if(this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnEliminar()) {
-				String localidad = this.ventanaLocalidad.getJList().getSelectedValue();
-				if (localidad != null) {
-					this.agenda.borrarLocalidad(this.localidades.get(buscarLocalidad(localidad)));
-					this.cargarDatos();
-					cargarLocalidadesEnLista();
-				}
+				borrarLocalidad();
 			}
 			
 			else if(e.getSource() == this.ventanaTipoDeContacto.getBtnAgregar()) 
 			{
-				TipoDeContactoDTO nuevoTipoDeContacto = new TipoDeContactoDTO(this.ventanaTipoDeContacto.getTxtNombre().getText(),0);
-				this.agenda.agregarTipoDeContacto(nuevoTipoDeContacto);
-				this.cargarDatos();
-				cargarTiposDeContactoEnLista();
+				agregarTipoDeContacto();
 			}
 			
 			else if (e.getSource() == this.ventanaTipoDeContacto.getBtnModificar()) 
 			{
-				String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();	 
-				if (tipoDeContacto != null) {
-					TipoDeContactoDTO tipoDeContacto_a_modificar= this.tiposDeContacto.get(buscar(tipoDeContacto));
-					tipoDeContacto_a_modificar.setTipo(this.ventanaTipoDeContacto.getTxtNombre().getText());
-					this.agenda.modificarTipoDeContacto(tipoDeContacto_a_modificar);
-					this.cargarDatos();
-					cargarTiposDeContactoEnLista();
-				} else {
-				
-				}
+				modificarTipoDeContacto();
 			} 
 			else if(e.getSource() == this.ventanaTipoDeContacto.getBtnEliminar()) {
-				String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();
-				if (tipoDeContacto != null) {
-					this.agenda.borrarTipoDeContacto(this.tiposDeContacto.get(buscar(tipoDeContacto)));
-					this.cargarDatos();
-					cargarTiposDeContactoEnLista();
-				}
+				borrarTipoDeContacto();
 			}
+		}
+
+		private void borrarTipoDeContacto() {
+			String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();
+			if (tipoDeContacto != null) {
+				this.agenda.borrarTipoDeContacto(this.tiposDeContacto.get(buscar(tipoDeContacto)));
+				this.cargarDatos();
+				cargarTiposDeContactoEnLista();
+			}
+		}
+
+		private void modificarTipoDeContacto() {
+			String tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();	 
+			if (tipoDeContacto != null) {
+				TipoDeContactoDTO tipoDeContacto_a_modificar= this.tiposDeContacto.get(buscar(tipoDeContacto));
+				tipoDeContacto_a_modificar.setTipo(this.ventanaTipoDeContacto.getTxtNombre().getText());
+				this.agenda.modificarTipoDeContacto(tipoDeContacto_a_modificar);
+				this.cargarDatos();
+				cargarTiposDeContactoEnLista();
+			} else {
+			
+			}
+		}
+
+		private void agregarTipoDeContacto() {
+			TipoDeContactoDTO nuevoTipoDeContacto = new TipoDeContactoDTO(this.ventanaTipoDeContacto.getTxtNombre().getText(),0);
+			this.agenda.agregarTipoDeContacto(nuevoTipoDeContacto);
+			this.cargarDatos();
+			cargarTiposDeContactoEnLista();
+		}
+
+		private void borrarLocalidad() {
+			String localidad = this.ventanaLocalidad.getJList().getSelectedValue();
+			if (localidad != null) {
+				this.agenda.borrarLocalidad(this.localidades.get(buscarLocalidad(localidad)));
+				this.cargarDatos();
+				cargarLocalidadesEnLista();
+			}
+		}
+
+		private void modificarLocalidad() {
+			String localidad = this.ventanaLocalidad.getJList().getSelectedValue();	 
+			if (localidad != null) {
+				LocalidadDTO localidad_a_modificar= this.localidades.get(buscarLocalidad(localidad));
+				localidad_a_modificar.setNombre(this.ventanaLocalidad.getTxtNombre().getText());
+				this.agenda.modificarLocalidad(localidad_a_modificar);
+				this.cargarDatos();
+				cargarLocalidadesEnLista();
+			} else {
+			
+			}
+		}
+
+		private void agregarNuevaLocalidad() {
+			LocalidadDTO nuevaLocalidad = new LocalidadDTO(this.ventanaLocalidad.getTxtNombre().getText(),0);
+			this.agenda.agregarLocalidad(nuevaLocalidad);
+			this.cargarDatos();
+			cargarLocalidadesEnLista();
 		}
 
 		private void cargarTiposDeContactoEnLista() 
