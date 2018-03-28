@@ -1,4 +1,4 @@
-package presentacion.controlador;
+package presentacion.reportes;
 
 public class CalculadoraHoroscopoChino 
 {

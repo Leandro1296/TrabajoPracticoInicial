@@ -9,7 +9,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import org.omg.CORBA.LocalObject;
 
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
@@ -31,7 +30,6 @@ public class Controlador implements ActionListener, MouseListener
 		private VentanaLocalidad ventanaLocalidad;
 		private VentanaTipoDeContacto ventanaTipoDeContacto;
 		private Agenda agenda;
-		private CalculadoraHoroscopoChino calculadoraHoroscopoChino;
 		private boolean seAgregaNueva;
 		
 		public Controlador(Vista vista, Agenda agenda)
