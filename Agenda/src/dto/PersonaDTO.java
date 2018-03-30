@@ -9,12 +9,12 @@ public class PersonaDTO
 	private int altura;
 	private int piso;
 	private String dpto;
-	private String localidad;
+	private int localidad;
 	private String mail;
 	private String cumpleaños;
-	private String tipo;
+	private int tipo;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, int piso, String dpto, String localidad, String mail,String cumpleaños, String tipo)
+	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, int piso, String dpto, int localidad, String mail,String cumpleaños, int tipo)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -83,11 +83,11 @@ public class PersonaDTO
 		this.piso = piso;
 	}
 
-	public String getLocalidad() {
+	public int getLocalidad() {
 		return localidad;
 	}
 
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(int localidad) {
 		this.localidad = localidad;
 	}
 
@@ -115,11 +115,11 @@ public class PersonaDTO
 		this.cumpleaños = cumpleaños;
 	}
 
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 }

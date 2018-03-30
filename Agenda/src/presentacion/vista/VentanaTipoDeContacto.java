@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
+import dto.TipoDeContactoDTO;
 import presentacion.controlador.Controlador;
 
 public class VentanaTipoDeContacto extends JDialog
@@ -20,8 +21,8 @@ public class VentanaTipoDeContacto extends JDialog
 	private static VentanaTipoDeContacto instancia;
 	private JButton btnAgregar, btnModificar, btnEliminar;
 	private JLabel lblTipo;
-	private JList<String> listaNombres;
-	private DefaultListModel<String> modelo;
+	private JList<TipoDeContactoDTO> listaNombres;
+	private DefaultListModel<TipoDeContactoDTO> modelo;
 	private JScrollPane scrollLista;
 	private JTextField txtNombre;
 	private Controlador controlador;
@@ -57,8 +58,8 @@ public class VentanaTipoDeContacto extends JDialog
 	}
 
 	private void inicializarLista() {
-		modelo = new DefaultListModel<String>();
-		listaNombres = new JList<String>(modelo);
+		modelo = new DefaultListModel<TipoDeContactoDTO>();
+		listaNombres = new JList<TipoDeContactoDTO>(modelo);
 		listaNombres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
@@ -121,9 +122,9 @@ public class VentanaTipoDeContacto extends JDialog
 	
 	public JButton getBtnModificar(){return this.btnModificar;}
 	
-	public JList<String> getJList(){return this.listaNombres;}
+	public JList<TipoDeContactoDTO> getJList(){return this.listaNombres;}
 	
-	public DefaultListModel<String> getModelo(){return this.modelo;}
+	public DefaultListModel<TipoDeContactoDTO> getModelo(){return this.modelo;}
 	
 	public JTextField getTxtNombre(){return this.txtNombre;}
 	

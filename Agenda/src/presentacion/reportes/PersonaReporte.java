@@ -11,10 +11,10 @@ public class PersonaReporte {
 	private int altura;
 	private int piso;
 	private String dpto;
-	private String localidad;
+	private int localidad;
 	private String mail;
 	private String cumpleaños;
-	private String tipo;
+	private int tipo;
 	private String signoHoroscopoChino;
 	
 	public PersonaReporte(PersonaDTO persona,String signo)
@@ -89,11 +89,11 @@ public class PersonaReporte {
 		this.dpto = dpto;
 	}
 
-	public String getLocalidad() {
+	public int getLocalidad() {
 		return localidad;
 	}
 
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(int localidad) {
 		this.localidad = localidad;
 	}
 
@@ -113,11 +113,11 @@ public class PersonaReporte {
 		this.cumpleaños = cumpleaños;
 	}
 
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 

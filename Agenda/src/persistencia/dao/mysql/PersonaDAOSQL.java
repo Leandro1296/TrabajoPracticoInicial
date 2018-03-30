@@ -16,7 +16,7 @@ public class PersonaDAOSQL implements PersonaDAO
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String update = "UPDATE personas SET Nombre = ?, Telefono = ?, Calle = ?, Altura = ?, Piso = ?, Departamento = ?, Localidad = ?, Mail = ?, Cumpleaños = ?, Tipo = ?  WHERE idPersona = ? ";
 	private static final String readall = "SELECT * FROM personas";
-		
+	
 	public boolean insert(PersonaDTO persona)
 	{
 		PreparedStatement statement;
@@ -31,10 +31,10 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setInt(5, persona.getAltura());
 			statement.setInt(6, persona.getPiso());
 			statement.setString(7, persona.getDpto());
-			statement.setString(8, persona.getLocalidad());
+			statement.setInt(8, persona.getLocalidad());
 			statement.setString(9, persona.getMail());
 			statement.setString(10, persona.getCumpleaños());
-			statement.setString(11, persona.getTipo());
+			statement.setInt(11, persona.getTipo());
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
@@ -79,10 +79,10 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setInt(4, persona_a_editar.getAltura());
 			statement.setInt(5, persona_a_editar.getPiso());
 			statement.setString(6, persona_a_editar.getDpto());
-			statement.setString(7, persona_a_editar.getLocalidad());
+			statement.setInt(7, persona_a_editar.getLocalidad());
 			statement.setString(8, persona_a_editar.getMail());
 			statement.setString(9, persona_a_editar.getCumpleaños());
-			statement.setString(10, persona_a_editar.getTipo());
+			statement.setInt(10, persona_a_editar.getTipo());
 			statement.setInt(11, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
@@ -114,10 +114,10 @@ public class PersonaDAOSQL implements PersonaDAO
 											resultSet.getInt("Altura"),
 											resultSet.getInt("Piso"),
 											resultSet.getString("Departamento"),
-											resultSet.getString("Localidad"),
+											resultSet.getInt("Localidad"),
 											resultSet.getString("Mail"),
 											resultSet.getString("Cumpleaños"),
-											resultSet.getString("Tipo")));
+											resultSet.getInt("Tipo")));
 			}
 		} 
 		catch (SQLException e) 
@@ -125,7 +125,5 @@ public class PersonaDAOSQL implements PersonaDAO
 			e.printStackTrace();
 		}
 		return personas;
-	}
-
-	
+	}	
 }

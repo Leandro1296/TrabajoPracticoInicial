@@ -11,6 +11,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
+import dto.LocalidadDTO;
 import presentacion.controlador.Controlador;
 
 public class VentanaLocalidad extends JDialog
@@ -19,8 +20,8 @@ public class VentanaLocalidad extends JDialog
 	private static VentanaLocalidad instancia;
 	private JButton btnAgregar, btnModificar, btnEliminar;
 	private JLabel mensaje;
-	private JList<String> listaNombres;
-	private DefaultListModel<String> modelo;
+	private JList<LocalidadDTO> listaNombres;
+	private DefaultListModel<LocalidadDTO> modelo;
 	private JScrollPane scrollLista;
 	private JTextField txtNombre;
 	private Controlador controlador;
@@ -56,8 +57,8 @@ public class VentanaLocalidad extends JDialog
 	}
 
 	private void inicializarLista() {
-		modelo = new DefaultListModel<String>();
-		listaNombres = new JList<String>(modelo);
+		modelo = new DefaultListModel<LocalidadDTO>();
+		listaNombres = new JList<LocalidadDTO>(modelo);
 		listaNombres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
@@ -120,9 +121,9 @@ public class VentanaLocalidad extends JDialog
 	
 	public JButton getBtnModificar(){return this.btnModificar;}
 	
-	public JList<String> getJList(){return this.listaNombres;}
+	public JList<LocalidadDTO> getJList(){return this.listaNombres;}
 	
-	public DefaultListModel<String> getModelo(){return this.modelo;}
+	public DefaultListModel<LocalidadDTO> getModelo(){return this.modelo;}
 	
 	public JTextField getTxtNombre(){return this.txtNombre;}
 	

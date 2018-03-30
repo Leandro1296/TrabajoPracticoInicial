@@ -5,7 +5,7 @@ public class LocalidadDTO {
 	private String nombre;
 	private int idLocalidad;
 	
-	public LocalidadDTO(String nombre, int id)
+	public LocalidadDTO(int id, String nombre)
 	{
 		this.nombre = nombre;
 		this.idLocalidad = id;
@@ -27,4 +27,5 @@ public class LocalidadDTO {
 		this.idLocalidad = idLocalidad;
 	}
 
+	public String toString(){return this.nombre;}
 }

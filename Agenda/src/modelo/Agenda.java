@@ -59,6 +59,10 @@ public class Agenda
 		this.localidad.edit(localidad_a_modificar);
 	}
 	
+	public LocalidadDTO obtenerLocalidad(int localidad){
+		return this.localidad.select(localidad);
+	}
+	
 	public List<LocalidadDTO> obtenerLocalidades()
 	{
 		return this.localidad.readAll();
@@ -77,6 +81,10 @@ public class Agenda
 	public void modificarTipoDeContacto(TipoDeContactoDTO tipoDeContacto_a_modificar) 
 	{
 		this.tipoDeContacto.edit(tipoDeContacto_a_modificar);
+	}
+	
+	public TipoDeContactoDTO obtenerTipoDeContacto(int tipoDeContacto){
+		return this.tipoDeContacto.select(tipoDeContacto);
 	}
 	
 	public List<TipoDeContactoDTO> obtenerTiposDeContacto()

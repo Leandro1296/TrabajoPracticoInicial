@@ -13,10 +13,11 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOSQL implements LocalidadDAO {
 	
-	private static final String insert = "INSERT INTO localidades(nombre,idLocalidad) VALUES(?,?)";
-	private static final String delete = "DELETE FROM localidades WHERE nombre = ?";
+	private static final String insert = "INSERT INTO localidades(idLocalidad, nombre) VALUES(?,?)";
+	private static final String delete = "DELETE FROM localidades WHERE idLocalidad = ?";
 	private static final String update = "UPDATE localidades SET Nombre = ? WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";
+	private static final String select = "SELECT * FROM localidades WHERE idLocalidad = ?";
 
 	@Override
 	public boolean insert(LocalidadDTO localidad) {
@@ -25,8 +26,8 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(insert);
-			statement.setString(1, localidad.getNombre());
-			statement.setInt(2, localidad.getIdLocalidad());
+			statement.setInt(1, localidad.getIdLocalidad());
+			statement.setString(2, localidad.getNombre());
 			if(statement.executeUpdate() > 0) //Si se ejecutÛ devuelvo true
 				return true;
 		} 
@@ -46,7 +47,7 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(delete);
-			statement.setString(1, localidad_a_eliminar.getNombre());
+			statement.setInt(1, localidad_a_eliminar.getIdLocalidad());
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecut√≥ devuelvo true
 				return true;
@@ -91,7 +92,7 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 			
 			while(resultSet.next())
 			{
-				localidades.add(new LocalidadDTO(resultSet.getString("Nombre"), resultSet.getInt("idLocalidad")));
+				localidades.add(new LocalidadDTO(resultSet.getInt("idLocalidad"), resultSet.getString("Nombre")));
 			}
 		} 
 		catch (SQLException e) 
@@ -99,5 +100,28 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 			e.printStackTrace();
 		}
 		return localidades;
+	}
+
+	@Override
+	public LocalidadDTO select(int localidad_a_buscar) {
+		PreparedStatement statement;
+		ResultSet resultSet; //Guarda el resultado de la query
+		LocalidadDTO localidad = null;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(select);
+			statement.setInt(1, localidad_a_buscar);
+			resultSet = statement.executeQuery();
+			if (resultSet.next())
+			{
+				localidad = new LocalidadDTO(resultSet.getInt("idLocalidad"), resultSet.getString("Nombre"));
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return localidad;
 	}
 }

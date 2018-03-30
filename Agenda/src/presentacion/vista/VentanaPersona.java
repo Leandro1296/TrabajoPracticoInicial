@@ -11,6 +11,9 @@ import presentacion.controlador.Controlador;
 
 import javax.swing.JComboBox;
 
+import dto.LocalidadDTO;
+import dto.TipoDeContactoDTO;
+
 public class VentanaPersona extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
@@ -35,8 +38,8 @@ public class VentanaPersona extends JFrame
 	private JTextField txtDepartamento;
 	private JTextField txtMail;
 	private JTextField txtCumpleaños;
-	private JComboBox<String> cmBxLocalidad;
-	private JComboBox<String> cmBxTipoDeContacto;
+	private JComboBox<LocalidadDTO> cmBxLocalidad;
+	private JComboBox<TipoDeContactoDTO> cmBxTipoDeContacto;
 
 	public VentanaPersona(Controlador controlador) 
 	{
@@ -155,13 +158,11 @@ public class VentanaPersona extends JFrame
 	}
 
 	private void cmBoxes(JPanel panel) {
-		cmBxLocalidad = new JComboBox<>();
-		cmBxLocalidad.addItem("Seleccionar Localidad...");
+		cmBxLocalidad = new JComboBox<LocalidadDTO>();
 		cmBxLocalidad.setBounds(133, 226, 164, 20);
 		panel.add(cmBxLocalidad);
 		
-		cmBxTipoDeContacto = new JComboBox<>();
-		cmBxTipoDeContacto.addItem("Seleccionar tipo de contacto...");
+		cmBxTipoDeContacto = new JComboBox<TipoDeContactoDTO>();
 		cmBxTipoDeContacto.setBounds(133, 385, 164, 20);
 		panel.add(cmBxTipoDeContacto);
 	}
@@ -206,12 +207,12 @@ public class VentanaPersona extends JFrame
 		return btnGuardar;
 	}
 	
-	public JComboBox<String> getCmbxLocalidad()
+	public JComboBox<LocalidadDTO> getCmbxLocalidad()
 	{
 		return cmBxLocalidad;
 	}
 	
-	public JComboBox<String> getCmbxTipoDeContacto()
+	public JComboBox<TipoDeContactoDTO> getCmbxTipoDeContacto()
 	{
 		return cmBxTipoDeContacto;
 	}

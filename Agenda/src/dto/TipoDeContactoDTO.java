@@ -5,7 +5,7 @@ public class TipoDeContactoDTO {
 	private String tipo;
 	private int idTipoDeContacto;
 	
-	public TipoDeContactoDTO(String tipo, int id)
+	public TipoDeContactoDTO(int id, String tipo)
 	{
 		this.tipo = tipo;
 		this.idTipoDeContacto = id;
@@ -27,5 +27,6 @@ public class TipoDeContactoDTO {
 	public void setIdTipoDeContacto(int idTipoDeContacto) {
 		this.idTipoDeContacto = idTipoDeContacto;
 	}
-
+	
+	public String toString(){return this.tipo;}
 }

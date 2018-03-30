@@ -14,5 +14,7 @@ public interface LocalidadDAO {
 	public boolean edit(LocalidadDTO localidad_a_editar);
 	
 	public List<LocalidadDTO> readAll();
+	
+	public LocalidadDTO select(int localidad_a_buscar);
 
 }
