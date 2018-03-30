@@ -128,6 +128,5 @@ public class PersonaReporte {
 	public void setSignoHoroscopoChino(String signoHoroscopoChino) {
 		this.signoHoroscopoChino = signoHoroscopoChino;
 	}
-	
 
 }

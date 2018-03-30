@@ -35,7 +35,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(9, persona.getMail());
 			statement.setString(10, persona.getCumpleaños());
 			statement.setInt(11, persona.getTipo());
-			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
+			if(statement.executeUpdate() > 0) //Si se ejecutñ devuelvo true
 				return true;
 		} 
 		catch (SQLException e) 
@@ -84,7 +84,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(9, persona_a_editar.getCumpleaños());
 			statement.setInt(10, persona_a_editar.getTipo());
 			statement.setInt(11, persona_a_editar.getIdPersona());
-			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
+			if(statement.executeUpdate() > 0) //Si se ejecutñ devuelvo true
 				return true;
 		} 
 		catch (SQLException e) 

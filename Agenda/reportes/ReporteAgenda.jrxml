@@ -134,14 +134,14 @@
 					<text><![CDATA[Localidad]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="380" y="1" width="81" height="19" uuid="817743fd-cf5f-4011-9833-9ba3903b906c"/>
+					<reportElement x="380" y="1" width="60" height="19" uuid="817743fd-cf5f-4011-9833-9ba3903b906c"/>
 					<textElement textAlignment="Left">
 						<font size="11"/>
 					</textElement>
 					<text><![CDATA[Mail]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="461" y="0" width="67" height="20" uuid="807e6e66-5b51-4438-836e-1b45a5855239"/>
+					<reportElement x="450" y="0" width="78" height="20" uuid="807e6e66-5b51-4438-836e-1b45a5855239"/>
 					<textElement textAlignment="Left">
 						<font size="11"/>
 					</textElement>
@@ -217,4 +217,25 @@
 			</textField>
 		</band>
 	</pageFooter>
+	<summary>
+		<band height="393">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="180" y="100" width="200" height="200" uuid="5424bb9e-8553-4801-bb57-c5352fd76752"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{signoHoroscopoChino}]]></keyExpression>
+					<valueExpression><![CDATA[$V{Signos_COUNT}]]></valueExpression>
+					<labelExpression><![CDATA[$F{signoHoroscopoChino} + " - " + $V{Signos_COUNT}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
 </jasperReport>

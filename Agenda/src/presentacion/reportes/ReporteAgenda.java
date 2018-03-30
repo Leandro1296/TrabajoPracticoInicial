@@ -50,6 +50,7 @@ public class ReporteAgenda
     	{
     		String signo = this.calculadoraHoroscopo.calcularSigno(persona.getCumpleaños());
     		listaDePersonas.add(new PersonaReporte(persona,signo));
+    		System.out.println(signo);
     	}
     	return listaDePersonas;
     }
@@ -59,5 +60,7 @@ public class ReporteAgenda
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
 		this.reporteViewer.setVisible(true);
 	}
+	
+	
    
 }	
