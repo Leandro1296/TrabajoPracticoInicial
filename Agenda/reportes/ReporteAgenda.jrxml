@@ -6,12 +6,65 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	<field name="piso" class="java.lang.Integer">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[tipo]]></fieldDescription>
+	</field>
+	<field name="mail" class="java.lang.String">
+		<fieldDescription><![CDATA[mail]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="signoHoroscopoChino" class="java.lang.String">
+		<fieldDescription><![CDATA[signoHoroscopoChino]]></fieldDescription>
+	</field>
+	<field name="dpto" class="java.lang.String">
+		<fieldDescription><![CDATA[dpto]]></fieldDescription>
 	</field>
 	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
+	<field name="cumpleaños" class="java.lang.String">
+		<fieldDescription><![CDATA[cumpleaños]]></fieldDescription>
+	</field>
+	<field name="altura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[altura]]></fieldDescription>
+	</field>
+	<field name="localidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	</field>
+	<group name="Signos">
+		<groupExpression><![CDATA[$F{signoHoroscopoChino}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<rectangle>
+					<reportElement mode="Opaque" x="-10" y="10" width="580" height="30" forecolor="#030202" backcolor="#4C2DE3" uuid="5a4a49e5-4494-4bc0-9675-5ef18b2fcd33"/>
+				</rectangle>
+				<textField>
+					<reportElement x="20" y="15" width="143" height="20" uuid="092f1c6f-21fd-4cf1-a5cb-5070f8c68761"/>
+					<textFieldExpression><![CDATA[$F{signoHoroscopoChino}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="58">
+				<staticText>
+					<reportElement x="455" y="14" width="34" height="16" uuid="94b1d0f6-22b8-4442-b21c-4c5a8713a5bb"/>
+					<text><![CDATA[Total: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="489" y="14" width="61" height="16" uuid="4f64a83e-2722-46f3-a01e-4f2fe2aea0cc"/>
+					<textFieldExpression><![CDATA[$V{Signos_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -51,33 +104,99 @@
 	<columnHeader>
 		<band height="31" splitType="Stretch">
 			<frame>
-				<reportElement x="2" y="6" width="550" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
+				<reportElement x="-18" y="10" width="588" height="19" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
 				<staticText>
-					<reportElement x="0" y="0" width="280" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
+					<reportElement x="0" y="-1" width="111" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
 					<textElement textAlignment="Center">
-						<font size="14"/>
+						<font size="11"/>
 					</textElement>
 					<text><![CDATA[Nombre y apellido]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="280" y="0" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<reportElement x="111" y="-1" width="60" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
 					</textElement>
 					<text><![CDATA[Teléfono]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="528" y="0" width="60" height="20" uuid="48ed8594-5871-4260-a4b4-d41dee176d8f"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
+					</textElement>
+					<text><![CDATA[Tipo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="290" y="0" width="92" height="19" uuid="b80f9080-cbf7-4911-b08d-7e8131b6c451"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
+					</textElement>
+					<text><![CDATA[Localidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="380" y="1" width="81" height="19" uuid="817743fd-cf5f-4011-9833-9ba3903b906c"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
+					</textElement>
+					<text><![CDATA[Mail]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="461" y="0" width="67" height="20" uuid="807e6e66-5b51-4438-836e-1b45a5855239"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
+					</textElement>
+					<text><![CDATA[Cumpleaños]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="181" y="0" width="59" height="20" uuid="4cbe08c7-22e8-46c5-9833-ab8525ff92d8"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
+					</textElement>
+					<text><![CDATA[Calle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="-1" width="40" height="20" uuid="f13e89cd-fd77-4eab-b622-d37ae558ceb0"/>
+					<textElement textAlignment="Left">
+						<font size="11"/>
+					</textElement>
+					<text><![CDATA[Altura]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="50" splitType="Stretch">
 			<textField>
-				<reportElement x="5" y="0" width="225" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
+				<reportElement x="0" y="0" width="80" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="285" y="1" width="215" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
+				<reportElement x="93" y="1" width="60" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="52" height="13" uuid="0fc51d4d-8dbb-48bc-bf3e-ba7002e056b1"/>
+				<textFieldExpression><![CDATA[$F{calle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="-1" width="42" height="15" uuid="93dfc4c0-1d0f-4b63-8488-89f9abce6265"/>
+				<textFieldExpression><![CDATA[$F{altura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="67" height="18" uuid="cf3c23ff-a601-444e-882d-f9fe3a7689ef"/>
+				<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="-2" width="79" height="16" uuid="50ef06c2-ec88-4b28-a808-325a76bfe1ab"/>
+				<textFieldExpression><![CDATA[$F{mail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="0" width="67" height="18" uuid="44dfc3ae-183d-4fae-a386-a38d9816c8be"/>
+				<textFieldExpression><![CDATA[$F{cumpleaños}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="60" height="19" uuid="1b99210d-d4c7-49fb-b499-8b2c75f94010"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -85,7 +204,7 @@
 		<band height="7" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="33" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
 				<reportElement x="355" y="0" width="100" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
 				<textElement textAlignment="Right"/>
