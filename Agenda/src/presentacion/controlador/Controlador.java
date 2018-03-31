@@ -33,6 +33,7 @@ public class Controlador implements ActionListener, MouseListener
 		private VentanaLocalidad ventanaLocalidad;
 		private VentanaTipoDeContacto ventanaTipoDeContacto;
 		private Agenda agenda;
+		private Validador validador;
 		private boolean seAgregaNueva;
 		
 		public Controlador(Vista vista, Agenda agenda)
@@ -47,6 +48,7 @@ public class Controlador implements ActionListener, MouseListener
 			this.vista.getTablaPersonas().addMouseListener(this);
 			
 			this.agenda = agenda;
+			this.validador = new Validador();
 			this.seAgregaNueva = false;
 			this.personas_en_tabla = null;
 			this.localidades = null;
@@ -117,10 +119,19 @@ public class Controlador implements ActionListener, MouseListener
 			}
 			else if(this.ventanaPersona != null && e.getSource() == this.ventanaPersona.getBtnGuardar())
 			{
-				if(seAgregaNueva){ agregarNuevaPersona(); }
-				else{ modificarPersona(); }
-				actualizar();
-				cerrarVentana();
+				if(verificarCampos())
+				{
+					if(seAgregaNueva)
+					{ 
+						agregarNuevaPersona(); 
+					}
+					else
+					{ 
+						modificarPersona(); 
+					}
+					actualizar();
+					cerrarVentana();
+				}
 			}
 			
 			else if(this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar()) 
@@ -244,13 +255,15 @@ public class Controlador implements ActionListener, MouseListener
 			setComboBoxTipoDeContacto(personaSeleccionada);
 		}
 		
-		private void abrirVentanaLocalidades() {
+		private void abrirVentanaLocalidades() 
+		{
 			this.ventanaLocalidad = VentanaLocalidad.getVentana(this);
 			cargarLocalidadesEnLista();
 			this.ventanaLocalidad.getJList().addMouseListener(this);
 		}
 
-		private void abrirVentanaTiposDeContacto() {
+		private void abrirVentanaTiposDeContacto() 
+		{
 			this.ventanaTipoDeContacto = VentanaTipoDeContacto.getVentana(this);
 			cargarTiposDeContactoEnLista();
 			this.ventanaTipoDeContacto.getJList().addMouseListener(this);
@@ -259,16 +272,88 @@ public class Controlador implements ActionListener, MouseListener
 		private void agregarNuevaPersona() 
 		{
 			PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), 
-													   this.ventanaPersona.getTxtTelefono().getText(),
-													   this.ventanaPersona.getTxtCalle().getText(),
-									  Integer.parseInt(this.ventanaPersona.getTxtAltura().getText()),
-					   			      Integer.parseInt(this.ventanaPersona.getTxtPiso().getText()),
-													   this.ventanaPersona.getTxtDepartamento().getText(),
-													   this.valorcmbxLocalidades().getIdLocalidad(),
-													   this.ventanaPersona.getTxtMail().getText(),
-													   this.getDate(this.ventanaPersona.getTxtCumpleaños().getText()),
-													   this.valorcmbxTiposDeContacto().getIdTipoDeContacto());
+					this.ventanaPersona.getTxtTelefono().getText(),
+					this.ventanaPersona.getTxtCalle().getText(),
+					Integer.parseInt(this.ventanaPersona.getTxtAltura().getText()),
+					this.valorEntero(this.ventanaPersona.getTxtPiso().getText()),
+					this.ventanaPersona.getTxtDepartamento().getText(),
+					this.valorcmbxLocalidades().getIdLocalidad(),
+					this.ventanaPersona.getTxtMail().getText(),
+					this.getDate(this.ventanaPersona.getTxtCumpleaños().getText()),
+					this.valorcmbxTiposDeContacto().getIdTipoDeContacto());
 			this.agenda.agregarPersona(nuevaPersona);
+			Dialogo.mensaje("El contacto se agrego exitosamente", "Nueva Persona");
+		}
+		
+		private Integer valorEntero(String text) 
+		{
+			if(estaVacio(text)){ return 0; }
+			else{ return Integer.parseInt(text); }
+		}
+
+		private boolean verificarCampos()
+		{
+			boolean camposValidos = true;
+			String nombre = this.ventanaPersona.getTxtNombre().getText();
+			String telefono = this.ventanaPersona.getTxtTelefono().getText();
+			String calle = this.ventanaPersona.getTxtCalle().getText();
+			String altura = this.ventanaPersona.getTxtAltura().getText();
+			String piso = this.ventanaPersona.getTxtPiso().getText();
+			String mail = this.ventanaPersona.getTxtMail().getText();
+			String cumpleaños = this.ventanaPersona.getTxtCumpleaños().getText();
+
+			if(estaVacio(nombre)||estaVacio(telefono)||estaVacio(calle)||
+			   estaVacio(altura)||estaVacio(mail)||estaVacio(cumpleaños))
+			{
+				Dialogo.error("Faltan completar campos", "Campos obligatorios vacios");
+				camposValidos = false;
+			}
+			else if(!validador.nombresValido(nombre))
+			{
+				Dialogo.error("Nombre y Apellidos invalidos", "Error");
+				camposValidos = false;
+			}
+			else if(!validador.telefonoValido(telefono))
+			{
+				Dialogo.error("Numero de telefono invalido", "Error");
+				camposValidos = false;
+			}
+			else if(!validador.nombreValido(calle))
+			{
+				Dialogo.error("Nombre de calle invalido", "Error");
+				camposValidos = false;
+			}
+			else if(!validador.alturaValida(altura))
+			{
+				Dialogo.error("La altura debe ser un numero", "Error");
+				camposValidos = false;
+			}
+			else if(!validador.pisoValido(piso))
+			{
+				Dialogo.error("No se admite letras en el campo 'Piso'", "Error");
+				camposValidos = false;
+			}
+			else if(!validador.mailValido(mail))
+			{
+				Dialogo.error("Direccion de mail incorrecta", "Error");
+				camposValidos = false;
+			}
+			else if(!validador.fechaValida(cumpleaños))
+			{
+				System.out.println(cumpleaños);
+				Dialogo.error("La fecha ingresada es incorrecta. Debe ser (dd/mm/yyyy)", "Error");
+				camposValidos = false;
+			}
+			else
+			{
+				camposValidos = true;
+			}
+			return camposValidos;
+		}
+		
+		public boolean estaVacio(String valor)
+		{
+			return valor.trim().equals("");
 		}
 		
 		private void borrarPersonas() 
@@ -296,9 +381,11 @@ public class Controlador implements ActionListener, MouseListener
 			personaSeleccionada.setCumpleaños(getDate(this.ventanaPersona.getTxtCumpleaños().getText()));
 			personaSeleccionada.setTipo(valorcmbxTiposDeContacto().getIdTipoDeContacto());
 			this.agenda.modificarPersona(personaSeleccionada);
+			Dialogo.mensaje("El contacto se modifico exitosamente", "Modicacion de Contacto");
 		}
 		
-		private void agregarNuevaLocalidad() {
+		private void agregarNuevaLocalidad() 
+		{
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0 , this.ventanaLocalidad.getTxtNombre().getText());
 			this.agenda.agregarLocalidad(nuevaLocalidad);
 			this.cargarDatos();
@@ -306,7 +393,8 @@ public class Controlador implements ActionListener, MouseListener
 			setTxtField(this.ventanaLocalidad.getTxtNombre(),"");
 		}
 
-		private void borrarLocalidad() {
+		private void borrarLocalidad() 
+		{
 			LocalidadDTO localidad = this.ventanaLocalidad.getJList().getSelectedValue();
 			if (localidad != null) {
 				this.agenda.borrarLocalidad(this.localidades.get(buscarLocalidad(localidad.getNombre())));
@@ -316,9 +404,11 @@ public class Controlador implements ActionListener, MouseListener
 			}
 		}
 
-		private void modificarLocalidad() {
+		private void modificarLocalidad()
+		{
 			LocalidadDTO localidad = this.ventanaLocalidad.getJList().getSelectedValue();	 
-			if (localidad != null) {
+			if (localidad != null) 
+			{
 				LocalidadDTO localidad_a_modificar= this.localidades.get(buscarLocalidad(localidad.getNombre()));
 				localidad_a_modificar.setNombre(this.ventanaLocalidad.getTxtNombre().getText());
 				this.agenda.modificarLocalidad(localidad_a_modificar);
@@ -326,7 +416,9 @@ public class Controlador implements ActionListener, MouseListener
 				this.cargarLocalidadesEnLista();
 				this.setTxtField(this.ventanaLocalidad.getTxtNombre(),"");
 				this.llenarTabla();
-			} else {
+			} 
+			else 
+			{
 			
 			}
 		}
@@ -338,7 +430,6 @@ public class Controlador implements ActionListener, MouseListener
 			for (LocalidadDTO localidad : localidadesOB){
 				this.ventanaLocalidad.getModelo().addElement(localidad);
 			}
-			System.out.println(this.ventanaLocalidad.getModelo().getSize());
 			this.ventanaLocalidad.getJList().setModel(this.ventanaLocalidad.getModelo());
 		}
 		
@@ -418,7 +509,7 @@ public class Controlador implements ActionListener, MouseListener
 		
 		private java.sql.Date getDate(String fecha)
 		{
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = null;
 			try {
 				date = format.parse(fecha);

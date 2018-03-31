@@ -9,14 +9,14 @@ public class PersonaDTO
 	private String telefono;
 	private String calle;
 	private int altura;
-	private int piso;
+	private Integer piso;
 	private String dpto;
 	private int localidad;
 	private String mail;
 	private Date cumpleaños;
 	private int tipo;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, int piso, String dpto, int localidad, String mail, Date cumpleaños, int tipo)
+	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, Integer piso, String dpto, int localidad, String mail, Date cumpleaños, int tipo)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -77,11 +77,11 @@ public class PersonaDTO
 		this.altura = altura;
 	}
 
-	public int getPiso() {
+	public Integer getPiso() {
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(Integer piso) {
 		this.piso = piso;
 	}
 

@@ -154,7 +154,7 @@ public class VentanaPersona extends JFrame
 		txtMail.setBounds(133, 273, 164, 20);
 		panel.add(txtMail);
 		
-		txtCumpleaños = new JFormattedTextField(new SimpleDateFormat("yyyy-MM-dd"));
+		txtCumpleaños = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
 		txtCumpleaños.setColumns(10);
 		txtCumpleaños.setBounds(133, 332, 164, 20);
 		panel.add(txtCumpleaños);
