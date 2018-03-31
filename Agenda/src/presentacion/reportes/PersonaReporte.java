@@ -1,8 +1,10 @@
 package presentacion.reportes;
 
+import java.util.Date;
+
 import dto.PersonaDTO;
 
-public class PersonaReporte {
+public class PersonaReporte implements Comparable<PersonaReporte>{
 	
 	private int idPersona;
 	private String nombre;
@@ -13,7 +15,7 @@ public class PersonaReporte {
 	private String dpto;
 	private int localidad;
 	private String mail;
-	private String cumpleaños;
+	private Date cumpleaños;
 	private int tipo;
 	private String signoHoroscopoChino;
 	
@@ -105,11 +107,11 @@ public class PersonaReporte {
 		this.mail = mail;
 	}
 
-	public String getCumpleaños() {
+	public Date getCumpleaños() {
 		return cumpleaños;
 	}
 
-	public void setCumpleaños(String cumpleaños) {
+	public void setCumpleaños(Date cumpleaños) {
 		this.cumpleaños = cumpleaños;
 	}
 
@@ -127,6 +129,11 @@ public class PersonaReporte {
 
 	public void setSignoHoroscopoChino(String signoHoroscopoChino) {
 		this.signoHoroscopoChino = signoHoroscopoChino;
+	}
+
+	@Override
+	public int compareTo(PersonaReporte persona) {
+		return this.cumpleaños.compareTo(persona.getCumpleaños());
 	}
 
 }

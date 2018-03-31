@@ -16,5 +16,7 @@ public interface LocalidadDAO {
 	public List<LocalidadDTO> readAll();
 	
 	public LocalidadDTO select(int localidad_a_buscar);
+	
+	public boolean isUsed(LocalidadDTO localidad); 
 
 }

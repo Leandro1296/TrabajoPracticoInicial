@@ -1,6 +1,9 @@
 package presentacion.vista;
 
+import java.text.SimpleDateFormat;
+
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,7 +40,7 @@ public class VentanaPersona extends JFrame
 	private JTextField txtPiso;
 	private JTextField txtDepartamento;
 	private JTextField txtMail;
-	private JTextField txtCumpleaños;
+	private JFormattedTextField txtCumpleaños;
 	private JComboBox<LocalidadDTO> cmBxLocalidad;
 	private JComboBox<TipoDeContactoDTO> cmBxTipoDeContacto;
 
@@ -151,7 +154,7 @@ public class VentanaPersona extends JFrame
 		txtMail.setBounds(133, 273, 164, 20);
 		panel.add(txtMail);
 		
-		txtCumpleaños = new JTextField();
+		txtCumpleaños = new JFormattedTextField(new SimpleDateFormat("yyyy-MM-dd"));
 		txtCumpleaños.setColumns(10);
 		txtCumpleaños.setBounds(133, 332, 164, 20);
 		panel.add(txtCumpleaños);

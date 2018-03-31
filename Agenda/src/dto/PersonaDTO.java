@@ -1,5 +1,7 @@
 package dto;
 
+import java.sql.Date;
+
 public class PersonaDTO 
 {
 	private int idPersona;
@@ -11,10 +13,10 @@ public class PersonaDTO
 	private String dpto;
 	private int localidad;
 	private String mail;
-	private String cumpleaños;
+	private Date cumpleaños;
 	private int tipo;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, int piso, String dpto, int localidad, String mail,String cumpleaños, int tipo)
+	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, int piso, String dpto, int localidad, String mail, Date cumpleaños, int tipo)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -107,11 +109,11 @@ public class PersonaDTO
 		this.mail = mail;
 	}
 
-	public String getCumpleaños() {
+	public Date getCumpleaños() {
 		return cumpleaños;
 	}
 
-	public void setCumpleaños(String cumpleaños) {
+	public void setCumpleaños(Date cumpleaños) {
 		this.cumpleaños = cumpleaños;
 	}
 

@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -236,7 +240,7 @@ public class Controlador implements ActionListener, MouseListener
 			setTxtField(this.ventanaPersona.getTxtDepartamento(), personaSeleccionada.getDpto());
 			setComboBoxLocalidad(personaSeleccionada);
 			setTxtField(this.ventanaPersona.getTxtMail(), personaSeleccionada.getMail());
-			setTxtField(this.ventanaPersona.getTxtCumpleaños(), personaSeleccionada.getCumpleaños());
+			setTxtField(this.ventanaPersona.getTxtCumpleaños(), personaSeleccionada.getCumpleaños().toString());
 			setComboBoxTipoDeContacto(personaSeleccionada);
 		}
 		
@@ -260,10 +264,10 @@ public class Controlador implements ActionListener, MouseListener
 									  Integer.parseInt(this.ventanaPersona.getTxtAltura().getText()),
 					   			      Integer.parseInt(this.ventanaPersona.getTxtPiso().getText()),
 													   this.ventanaPersona.getTxtDepartamento().getText(),
-													   valorcmbxLocalidades().getIdLocalidad(),
+													   this.valorcmbxLocalidades().getIdLocalidad(),
 													   this.ventanaPersona.getTxtMail().getText(),
-													   this.ventanaPersona.getTxtCumpleaños().getText(),
-													   valorcmbxTiposDeContacto().getIdTipoDeContacto());
+													   this.getDate(this.ventanaPersona.getTxtCumpleaños().getText()),
+													   this.valorcmbxTiposDeContacto().getIdTipoDeContacto());
 			this.agenda.agregarPersona(nuevaPersona);
 		}
 		
@@ -289,7 +293,7 @@ public class Controlador implements ActionListener, MouseListener
 			personaSeleccionada.setDpto(this.ventanaPersona.getTxtDepartamento().getText());
 			personaSeleccionada.setLocalidad( valorcmbxLocalidades().getIdLocalidad());
 			personaSeleccionada.setMail(this.ventanaPersona.getTxtMail().getText());
-			personaSeleccionada.setCumpleaños(this.ventanaPersona.getTxtCumpleaños().getText());
+			personaSeleccionada.setCumpleaños(getDate(this.ventanaPersona.getTxtCumpleaños().getText()));
 			personaSeleccionada.setTipo(valorcmbxTiposDeContacto().getIdTipoDeContacto());
 			this.agenda.modificarPersona(personaSeleccionada);
 		}
@@ -410,6 +414,19 @@ public class Controlador implements ActionListener, MouseListener
 		{
 			this.localidades = agenda.obtenerLocalidades();
 			this.tiposDeContacto = agenda.obtenerTiposDeContacto();
+		}
+		
+		private java.sql.Date getDate(String fecha)
+		{
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = null;
+			try {
+				date = format.parse(fecha);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+			return sqlDate;
 		}
 		
 		private boolean unaFilaSeleccionada() 

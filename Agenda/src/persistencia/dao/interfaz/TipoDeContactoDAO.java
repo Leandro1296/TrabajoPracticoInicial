@@ -17,5 +17,7 @@ public interface TipoDeContactoDAO {
 	public List<TipoDeContactoDTO> readAll();
 
 	public TipoDeContactoDTO select(int tipoDeContacto);
+	
+	public boolean isUsed(TipoDeContactoDTO tipoDeContacto); 
 
 }

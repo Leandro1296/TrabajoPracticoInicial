@@ -1,18 +1,18 @@
 package presentacion.reportes;
 
-public class CalculadoraHoroscopoChino 
+public class HoroscopoChino 
 {
 	private int resto;
 	private int año;
 	
-	public CalculadoraHoroscopoChino()
+	public HoroscopoChino()
 	{
 		resto = 0;
 		año = 0;
 	}
 	
 	public String calcularSigno(String fecha){
-		año = Integer.parseInt(fecha.substring(fecha.length() - 4, fecha.length()));
+		año = Integer.parseInt(fecha.substring(0, 4));//1234-45-45
 		resto = año % 12;
 		   switch (resto) 
 		   {

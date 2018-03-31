@@ -2,6 +2,7 @@ package presentacion.reportes;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,18 +23,19 @@ public class ReporteAgenda
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 	private List<PersonaReporte> personas;
-	private CalculadoraHoroscopoChino calculadoraHoroscopo;
+	private HoroscopoChino calculadoraHoroscopo;
 	
 	//Recibe la lista de personas para armar el reporte
     public ReporteAgenda(List<PersonaDTO> personas)
     {
     	//Hardcodeado
-    	this.calculadoraHoroscopo = new CalculadoraHoroscopoChino();
-    	this.personas = calcularHoroscopo(personas);
+    	this.calculadoraHoroscopo = new HoroscopoChino();
+    	this.personas = asignarHoroscopo(personas);
+    	Collections.sort(this.personas);
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
-    	try		{
-    		
+    	try		
+    	{
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes\\ReporteAgenda.jasper" );
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap, 
 					new JRBeanCollectionDataSource(this.personas));
@@ -44,11 +46,11 @@ public class ReporteAgenda
 		}
     }       
     
-    private List<PersonaReporte> calcularHoroscopo(List<PersonaDTO> personas) {
+    private List<PersonaReporte> asignarHoroscopo(List<PersonaDTO> personas) {
     	List<PersonaReporte> listaDePersonas = new ArrayList<PersonaReporte>();
     	for(PersonaDTO persona: personas)
     	{
-    		String signo = this.calculadoraHoroscopo.calcularSigno(persona.getCumpleaños());
+    		String signo = this.calculadoraHoroscopo.calcularSigno(persona.getCumpleaños().toString());
     		listaDePersonas.add(new PersonaReporte(persona,signo));
     		System.out.println(signo);
     	}
@@ -60,7 +62,4 @@ public class ReporteAgenda
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
 		this.reporteViewer.setVisible(true);
 	}
-	
-	
-   
 }	

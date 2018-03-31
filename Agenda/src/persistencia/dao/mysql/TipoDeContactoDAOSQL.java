@@ -17,6 +17,7 @@ public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 	private static final String update = "UPDATE tiposDeContacto SET Tipo = ? WHERE idTipoDeContacto = ?";
 	private static final String readall = "SELECT * FROM tiposDeContacto";
 	private static final String select = "SELECT * FROM tiposDeContacto WHERE idTipoDeContacto = ?";
+	private static final String isUsed = "SELECT * FROM personas WHERE idTipoDeContacto = ?";
 	
 	@Override
 	public boolean insert(TipoDeContactoDTO tipoDeContacto)
@@ -100,6 +101,23 @@ public class TipoDeContactoDAOSQL implements TipoDeContactoDAO {
 			e.printStackTrace();
 		}
 		return tiposDeContacto;
+	}
+	
+	public boolean isUsed(TipoDeContactoDTO tipoDeContacto) {
+		PreparedStatement statement;
+		Conexion conexion = Conexion.getConexion();
+		try {
+			statement = conexion.getSQLConexion().prepareStatement(isUsed);
+			statement.setString(1, Long.toString(tipoDeContacto.getIdTipoDeContacto()));
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override

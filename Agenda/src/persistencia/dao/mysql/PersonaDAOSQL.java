@@ -33,7 +33,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(7, persona.getDpto());
 			statement.setInt(8, persona.getLocalidad());
 			statement.setString(9, persona.getMail());
-			statement.setString(10, persona.getCumpleaños());
+			statement.setDate(10, persona.getCumpleaños());
 			statement.setInt(11, persona.getTipo());
 			if(statement.executeUpdate() > 0) //Si se ejecutñ devuelvo true
 				return true;
@@ -81,7 +81,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(6, persona_a_editar.getDpto());
 			statement.setInt(7, persona_a_editar.getLocalidad());
 			statement.setString(8, persona_a_editar.getMail());
-			statement.setString(9, persona_a_editar.getCumpleaños());
+			statement.setDate(9, persona_a_editar.getCumpleaños());
 			statement.setInt(10, persona_a_editar.getTipo());
 			statement.setInt(11, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0) //Si se ejecutñ devuelvo true
@@ -116,7 +116,7 @@ public class PersonaDAOSQL implements PersonaDAO
 											resultSet.getString("Departamento"),
 											resultSet.getInt("Localidad"),
 											resultSet.getString("Mail"),
-											resultSet.getString("Cumpleaños"),
+											resultSet.getDate("Cumpleaños"),
 											resultSet.getInt("Tipo")));
 			}
 		} 

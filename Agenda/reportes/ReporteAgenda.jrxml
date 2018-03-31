@@ -27,9 +27,6 @@
 	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
-	<field name="cumpleaños" class="java.lang.String">
-		<fieldDescription><![CDATA[cumpleaños]]></fieldDescription>
-	</field>
 	<field name="altura" class="java.lang.Integer">
 		<fieldDescription><![CDATA[altura]]></fieldDescription>
 	</field>
@@ -38,6 +35,9 @@
 	</field>
 	<field name="telefono" class="java.lang.String">
 		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	</field>
+	<field name="cumpleaños" class="java.util.Date">
+		<fieldDescription><![CDATA[cumpleaños]]></fieldDescription>
 	</field>
 	<group name="Signos">
 		<groupExpression><![CDATA[$F{signoHoroscopoChino}]]></groupExpression>
@@ -192,7 +192,7 @@
 			</textField>
 			<textField>
 				<reportElement x="443" y="0" width="67" height="18" uuid="44dfc3ae-183d-4fae-a386-a38d9816c8be"/>
-				<textFieldExpression><![CDATA[$F{cumpleaños}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[DATEFORMAT($F{cumpleaños},"dd/MM/yyyy")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="510" y="0" width="60" height="19" uuid="1b99210d-d4c7-49fb-b499-8b2c75f94010"/>
