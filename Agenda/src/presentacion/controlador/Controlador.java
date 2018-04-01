@@ -357,12 +357,21 @@ public class Controlador implements ActionListener, MouseListener
 		private void borrarLocalidad() 
 		{
 			LocalidadDTO localidad = this.ventanaLocalidad.getJList().getSelectedValue();
-			if (localidad != null) {
-				this.agenda.borrarLocalidad(this.localidades.get(buscarLocalidad(localidad.getNombre())));
-				Dialogo.mensaje("La localidad se borro con exito", "Borrar localidad");
-				this.cargarDatos();
-				cargarLocalidadesEnLista();
-				setTxtField(this.ventanaLocalidad.getTxtNombre(),"");
+			if (localidad != null) 
+			{	
+				System.out.println(this.agenda.estaUsada(localidad));
+				if(!this.agenda.estaUsada(localidad))
+				{
+					this.agenda.borrarLocalidad(this.localidades.get(buscarLocalidad(localidad.getNombre())));
+					this.cargarDatos();
+					cargarLocalidadesEnLista();
+					setTxtField(this.ventanaLocalidad.getTxtNombre(),"");
+					Dialogo.mensaje("La localidad se borro con exito", "Borrar localidad");
+				}
+				else
+				{
+					Dialogo.error("La localidad esta en uso", "Error");
+				}
 			}
 			else 
 			{
@@ -427,11 +436,18 @@ public class Controlador implements ActionListener, MouseListener
 		private void borrarTipoDeContacto() {
 			TipoDeContactoDTO tipoDeContacto = this.ventanaTipoDeContacto.getJList().getSelectedValue();
 			if (tipoDeContacto != null) {
-				this.agenda.borrarTipoDeContacto(this.tiposDeContacto.get(buscar(tipoDeContacto.getTipo())));
-				Dialogo.mensaje("Borrado con exito", "Borrar Etiqueta");
-				this.cargarDatos();
-				this.cargarTiposDeContactoEnLista();
-				this.setTxtField(this.ventanaTipoDeContacto.getTxtNombre(),"");
+				if(!this.agenda.estaUsado(tipoDeContacto))
+				{
+					this.agenda.borrarTipoDeContacto(this.tiposDeContacto.get(buscar(tipoDeContacto.getTipo())));
+					Dialogo.mensaje("Borrado con exito", "Borrar Etiqueta");
+					this.cargarDatos();
+					this.cargarTiposDeContactoEnLista();
+					this.setTxtField(this.ventanaTipoDeContacto.getTxtNombre(),"");
+				}
+				else
+				{
+					Dialogo.error("La Etiqueta esta en uso", "Error");
+				}
 			}
 			else
 			{
@@ -560,7 +576,7 @@ public class Controlador implements ActionListener, MouseListener
 		{
 			boolean esValido = true;
 			String localidad = this.ventanaLocalidad.getTxtNombre().getText();
-			if(estaVacio(localidad) || validador.nombreValido(localidad))
+			if(estaVacio(localidad) || !validador.nombreValido(localidad))
 			{
 				Dialogo.error("Por favor, ingrese una localidad valida", "Error");
 				esValido = false;
@@ -588,7 +604,7 @@ public class Controlador implements ActionListener, MouseListener
 		{
 			boolean esValido = true;
 			String tipoDeContacto = this.ventanaTipoDeContacto.getTxtNombre().getText();
-			if(estaVacio(tipoDeContacto) || validador.nombreValido(tipoDeContacto))
+			if(estaVacio(tipoDeContacto) || !validador.nombreValido(tipoDeContacto))
 			{
 				Dialogo.error("Por favor, ingrese una etiqueta valida", "Error al agregar etiqueta");
 				esValido = false;

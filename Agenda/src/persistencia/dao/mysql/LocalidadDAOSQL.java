@@ -18,7 +18,7 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 	private static final String update = "UPDATE localidades SET Nombre = ? WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";
 	private static final String select = "SELECT * FROM localidades WHERE idLocalidad = ?";
-	private static final String isUsed = "SELECT * FROM domicilios WHERE idLocalidad = ?";
+	private static final String isUsed = "SELECT * FROM personas WHERE localidad = ?";
 
 	@Override
 	public boolean insert(LocalidadDTO localidad) {
@@ -131,12 +131,12 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 		Conexion conexion = Conexion.getConexion();
 		try {
 			statement = conexion.getSQLConexion().prepareStatement(isUsed);
-			statement.setString(1, Long.toString(localidad.getIdLocalidad()));
+			statement.setInt(1, localidad.getIdLocalidad());
 			ResultSet rs = statement.executeQuery();
-			if (rs.next()) {
+			if (rs.next()) 
+			{
 				return true;
 			}
-			return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

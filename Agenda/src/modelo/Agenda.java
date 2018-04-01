@@ -24,6 +24,8 @@ public class Agenda
 		this.tipoDeContacto = metodo_persistencia.createTipoContactoDAO();
 	}
 	
+	//************************METODOS DE PERSONA***************************//
+	
 	public void agregarPersona(PersonaDTO nuevaPersona)
 	{
 		this.persona.insert(nuevaPersona);
@@ -43,6 +45,8 @@ public class Agenda
 	{
 		return this.persona.readAll();		
 	}
+
+	//************************METODOS DE LOCALIDAD***************************//
 	
 	public void agregarLocalidad(LocalidadDTO nuevaLocalidad)
 	{
@@ -59,14 +63,22 @@ public class Agenda
 		this.localidad.edit(localidad_a_modificar);
 	}
 	
-	public LocalidadDTO obtenerLocalidad(int localidad){
+	public LocalidadDTO obtenerLocalidad(int localidad)
+	{
 		return this.localidad.select(localidad);
+	}
+	
+	public boolean estaUsada(LocalidadDTO localidad_a_eliminar) 
+	{
+		return this.localidad.isUsed(localidad_a_eliminar);
 	}
 	
 	public List<LocalidadDTO> obtenerLocalidades()
 	{
 		return this.localidad.readAll();
 	}
+
+	//**********************METODOS DE TIPO DE CONTACTO***********************//
 	
 	public void agregarTipoDeContacto(TipoDeContactoDTO nuevaTipoDeContacto)
 	{
@@ -83,8 +95,14 @@ public class Agenda
 		this.tipoDeContacto.edit(tipoDeContacto_a_modificar);
 	}
 	
-	public TipoDeContactoDTO obtenerTipoDeContacto(int tipoDeContacto){
+	public TipoDeContactoDTO obtenerTipoDeContacto(int tipoDeContacto)
+	{
 		return this.tipoDeContacto.select(tipoDeContacto);
+	}
+	
+	public boolean estaUsado(TipoDeContactoDTO tipoDeContacto) 
+	{
+		return this.tipoDeContacto.isUsed(tipoDeContacto);
 	}
 	
 	public List<TipoDeContactoDTO> obtenerTiposDeContacto()
