@@ -46,7 +46,8 @@ public class ReporteAgenda
 		}
     }       
     
-    private List<PersonaReporte> asignarHoroscopo(List<PersonaDTO> personas) {
+    private List<PersonaReporte> asignarHoroscopo(List<PersonaDTO> personas) 
+    {
     	List<PersonaReporte> listaDePersonas = new ArrayList<PersonaReporte>();
     	for(PersonaDTO persona: personas)
     	{
