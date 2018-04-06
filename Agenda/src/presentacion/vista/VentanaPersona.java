@@ -14,6 +14,8 @@ import presentacion.controlador.Controlador;
 
 import javax.swing.JComboBox;
 
+import org.jdesktop.swingx.prompt.PromptSupport;
+
 import dto.LocalidadDTO;
 import dto.TipoDeContactoDTO;
 
@@ -123,21 +125,25 @@ public class VentanaPersona extends JFrame
 		txtNombre.setBounds(133, 8, 164, 20);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
+		PromptSupport.setPrompt("*", txtNombre);
 		
 		txtTelefono = new JTextField();
 		txtTelefono.setBounds(133, 49, 164, 20);
 		panel.add(txtTelefono);
 		txtTelefono.setColumns(10);
+		PromptSupport.setPrompt("*", txtTelefono);
 		
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
 		txtCalle.setBounds(133, 87, 164, 20);
 		panel.add(txtCalle);
-		
+		PromptSupport.setPrompt("*", txtCalle);
+				
 		txtAltura = new JTextField();
 		txtAltura.setColumns(10);
 		txtAltura.setBounds(70, 130, 65, 20);
 		panel.add(txtAltura);
+		PromptSupport.setPrompt("*", txtAltura);
 		
 		txtPiso = new JTextField();
 		txtPiso.setColumns(10);
@@ -153,11 +159,13 @@ public class VentanaPersona extends JFrame
 		txtMail.setColumns(10);
 		txtMail.setBounds(133, 273, 164, 20);
 		panel.add(txtMail);
+		PromptSupport.setPrompt("nombre@dominio.com", txtMail);
 		
 		txtCumpleaños = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
 		txtCumpleaños.setColumns(10);
 		txtCumpleaños.setBounds(133, 332, 164, 20);
 		panel.add(txtCumpleaños);
+		PromptSupport.setPrompt("dd/mm/aaaa", txtCumpleaños);
 	}
 
 	private void cmBoxes(JPanel panel) {

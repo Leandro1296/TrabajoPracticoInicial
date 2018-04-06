@@ -529,7 +529,7 @@ public class Controlador implements ActionListener, MouseListener
 			}
 			else if(!validador.telefonoValido(telefono))
 			{
-				Dialogo.error("Numero de telefono invalido", "Error");
+				Dialogo.error("Numero de telefono invalido. Debe ser (11xxxxxxxx o 15xxxxxxxx )", "Error");
 				camposValidos = false;
 			}
 			else if(!validador.nombreValido(calle))
@@ -549,7 +549,7 @@ public class Controlador implements ActionListener, MouseListener
 			}
 			else if(!validador.mailValido(mail))
 			{
-				Dialogo.error("Direccion de mail incorrecta", "Error");
+				Dialogo.error("Direccion de mail incorrecta. Debe ser (nombre@dominio.com)", "Error");
 				camposValidos = false;
 			}
 			else if(!validador.fechaValida(cumpleaños))

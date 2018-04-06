@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class Validador 
 {
 	public static final String expMail = "\\w+@\\w+(\\.\\w+)+";                // ejemplo@ejemplo.com
+	public static final String expMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	public static final String expFecha = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}"; // dd//mm/yyyy
 	public static final String expTelefono = "1[15]\\d{8}";			 		   // 15xxxxxxxx o 11xxxxxxxx
 	public static final String expAltura = "\\d{1,4}";			       		   // 1321
@@ -15,7 +16,7 @@ public class Validador
 
 	public boolean mailValido(String mailInput)
 	{
-		return verificar(mailInput,expMail);
+		return verificar(mailInput,expMAIL);
 	}
 	
 	public boolean nombresValido(String nombreInput)
