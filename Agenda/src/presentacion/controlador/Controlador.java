@@ -79,7 +79,7 @@ public class Controlador implements ActionListener, MouseListener
 								 this.personas_en_tabla.get(i).getDpto(),
 								 this.agenda.obtenerLocalidad(this.personas_en_tabla.get(i).getLocalidad()).getNombre(),
 								 this.personas_en_tabla.get(i).getMail(),
-								 this.getDateString(this.personas_en_tabla.get(i).getCumpleaños()),
+								 this.getDateString(this.personas_en_tabla.get(i).getNacimiento()),
 								 this.agenda.obtenerTipoDeContacto(this.personas_en_tabla.get(i).getTipo()).getTipo()};
 				this.vista.getModelPersonas().addRow(fila);
 			}			
@@ -264,7 +264,7 @@ public class Controlador implements ActionListener, MouseListener
 			setTxtField(this.ventanaPersona.getTxtDepartamento(), personaSeleccionada.getDpto());
 			setComboBoxLocalidad(personaSeleccionada);
 			setTxtField(this.ventanaPersona.getTxtMail(), personaSeleccionada.getMail());
-			setTxtField(this.ventanaPersona.getTxtCumpleaños(), getDateString(personaSeleccionada.getCumpleaños()));
+			setTxtField(this.ventanaPersona.getTxtNacimiento(), getDateString(personaSeleccionada.getNacimiento()));
 			setComboBoxTipoDeContacto(personaSeleccionada);
 		}
 		
@@ -300,7 +300,7 @@ public class Controlador implements ActionListener, MouseListener
 					this.ventanaPersona.getTxtDepartamento().getText(),
 					this.valorcmbxLocalidades().getIdLocalidad(),
 					this.ventanaPersona.getTxtMail().getText(),
-					this.getDate(this.ventanaPersona.getTxtCumpleaños().getText()),
+					this.getDate(this.ventanaPersona.getTxtNacimiento().getText()),
 					this.valorcmbxTiposDeContacto().getIdTipoDeContacto());
 			this.agenda.agregarPersona(nuevaPersona);
 			Dialogo.mensaje("El contacto se agrego exitosamente", "Nueva Persona");
@@ -336,7 +336,7 @@ public class Controlador implements ActionListener, MouseListener
 			personaSeleccionada.setDpto(this.ventanaPersona.getTxtDepartamento().getText());
 			personaSeleccionada.setLocalidad( valorcmbxLocalidades().getIdLocalidad());
 			personaSeleccionada.setMail(this.ventanaPersona.getTxtMail().getText());
-			personaSeleccionada.setCumpleaños(getDate(this.ventanaPersona.getTxtCumpleaños().getText()));
+			personaSeleccionada.setNacimiento(getDate(this.ventanaPersona.getTxtNacimiento().getText()));
 			personaSeleccionada.setTipo(valorcmbxTiposDeContacto().getIdTipoDeContacto());
 			this.agenda.modificarPersona(personaSeleccionada);
 			Dialogo.mensaje("El contacto se modifico exitosamente", "Modicacion de Contacto");
@@ -514,10 +514,10 @@ public class Controlador implements ActionListener, MouseListener
 			String altura = this.ventanaPersona.getTxtAltura().getText();
 			String piso = this.ventanaPersona.getTxtPiso().getText();
 			String mail = this.ventanaPersona.getTxtMail().getText();
-			String cumpleaños = this.ventanaPersona.getTxtCumpleaños().getText();
+			String nacimiento = this.ventanaPersona.getTxtNacimiento().getText();
 
 			if(estaVacio(nombre)||estaVacio(telefono)||estaVacio(calle)||
-			   estaVacio(altura)||estaVacio(mail)||estaVacio(cumpleaños))
+			   estaVacio(altura)||estaVacio(mail)||estaVacio(nacimiento))
 			{
 				Dialogo.error("Faltan completar campos", "Campos obligatorios vacios");
 				camposValidos = false;
@@ -552,9 +552,9 @@ public class Controlador implements ActionListener, MouseListener
 				Dialogo.error("Direccion de mail incorrecta. Debe ser (nombre@dominio.com)", "Error");
 				camposValidos = false;
 			}
-			else if(!validador.fechaValida(cumpleaños))
+			else if(!validador.fechaValida(nacimiento))
 			{
-				System.out.println(cumpleaños);
+				System.out.println(nacimiento);
 				Dialogo.error("La fecha ingresada es incorrecta. Debe ser (dd/mm/yyyy)", "Error");
 				camposValidos = false;
 			}

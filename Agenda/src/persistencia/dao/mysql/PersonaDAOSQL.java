@@ -12,9 +12,9 @@ import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, calle, altura, piso, departamento, localidad, mail, cumpleaños, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, calle, altura, piso, departamento, localidad, mail, fechaDeNacimiento, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
-	private static final String update = "UPDATE personas SET Nombre = ?, Telefono = ?, Calle = ?, Altura = ?, Piso = ?, Departamento = ?, Localidad = ?, Mail = ?, Cumpleaños = ?, Tipo = ?  WHERE idPersona = ? ";
+	private static final String update = "UPDATE personas SET Nombre = ?, Telefono = ?, Calle = ?, Altura = ?, Piso = ?, Departamento = ?, Localidad = ?, Mail = ?, fechaDeNacimiento = ?, Tipo = ?  WHERE idPersona = ? ";
 	private static final String readall = "SELECT * FROM personas";
 	
 	public boolean insert(PersonaDTO persona)
@@ -33,7 +33,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(7, persona.getDpto());
 			statement.setInt(8, persona.getLocalidad());
 			statement.setString(9, persona.getMail());
-			statement.setDate(10, persona.getCumpleaños());
+			statement.setDate(10, persona.getNacimiento());
 			statement.setInt(11, persona.getTipo());
 			if(statement.executeUpdate() > 0) //Si se ejecutñ devuelvo true
 				return true;
@@ -81,7 +81,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(6, persona_a_editar.getDpto());
 			statement.setInt(7, persona_a_editar.getLocalidad());
 			statement.setString(8, persona_a_editar.getMail());
-			statement.setDate(9, persona_a_editar.getCumpleaños());
+			statement.setDate(9, persona_a_editar.getNacimiento());
 			statement.setInt(10, persona_a_editar.getTipo());
 			statement.setInt(11, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0) //Si se ejecutñ devuelvo true
@@ -116,7 +116,7 @@ public class PersonaDAOSQL implements PersonaDAO
 											resultSet.getString("Departamento"),
 											resultSet.getInt("Localidad"),
 											resultSet.getString("Mail"),
-											resultSet.getDate("Cumpleaños"),
+											resultSet.getDate("fechaDeNacimiento"),
 											resultSet.getInt("Tipo")));
 			}
 		} 

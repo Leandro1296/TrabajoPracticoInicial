@@ -27,7 +27,7 @@ public class Vista
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle",
 										"Altura","Piso","Departamento","Localidad",
-										"Mail", "Cumpleaños", "Tipo"};
+										"Mail", "Fecha de nacimiento", "Tipo"};
 
 	public Vista() 
 	{

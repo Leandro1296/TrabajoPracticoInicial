@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `Departamento` varchar(50) DEFAULT NULL,
   `Localidad` int(11) NOT NULL,
   `Mail` varchar(50) NOT NULL,
-  `Cumpleaños` date NOT NULL,
+  `fechaDeNacimiento` date NOT NULL,
   `Tipo` int(11) NOT NULL,
   PRIMARY KEY (`idPersona`),
   KEY `FK_localidad` (`Localidad`),

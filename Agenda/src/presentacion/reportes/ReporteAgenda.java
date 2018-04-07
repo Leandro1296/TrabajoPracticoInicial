@@ -32,6 +32,7 @@ public class ReporteAgenda
     	this.calculadoraHoroscopo = new HoroscopoChino();
     	this.personas = asignarHoroscopo(personas);
     	Collections.sort(this.personas);
+    	this.personas = this.calculadoraHoroscopo.ordenarHoroscopoChino(this.personas);
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
     	try		
@@ -51,16 +52,23 @@ public class ReporteAgenda
     	List<PersonaReporte> listaDePersonas = new ArrayList<PersonaReporte>();
     	for(PersonaDTO persona: personas)
     	{
-    		String signo = this.calculadoraHoroscopo.calcularSigno(persona.getCumpleaños().toString());
+    		String signo = this.calculadoraHoroscopo.calcularSigno(persona.getNacimiento().toString());
     		listaDePersonas.add(new PersonaReporte(persona,signo));
     		System.out.println(signo);
     	}
-    	return listaDePersonas;
+    	return this.calculadoraHoroscopo.ordenarHoroscopoChino(listaDePersonas);
     }
 
 	public void mostrar()
 	{
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
 		this.reporteViewer.setVisible(true);
+	}
+	
+	private void mhc()
+	{
+		for(PersonaReporte persona : personas){
+			System.out.println(persona.getSignoHoroscopoChino());
+		}
 	}
 }	

@@ -1,9 +1,6 @@
 package presentacion.vista;
 
-import java.text.SimpleDateFormat;
-
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,14 +32,14 @@ public class VentanaPersona extends JFrame
 	private JLabel lblDepartamento;
 	private JLabel lblLocalidad;
 	private JLabel lblMail;
-	private JLabel lblCumpleaños;
+	private JLabel lblNacimiento;
 	private JLabel lblTipo;
 	private JTextField txtCalle;
 	private JTextField txtAltura;
 	private JTextField txtPiso;
 	private JTextField txtDepartamento;
 	private JTextField txtMail;
-	private JFormattedTextField txtCumpleaños;
+	private JTextField txtNacimiento;
 	private JComboBox<LocalidadDTO> cmBxLocalidad;
 	private JComboBox<TipoDeContactoDTO> cmBxTipoDeContacto;
 
@@ -111,9 +108,9 @@ public class VentanaPersona extends JFrame
 		lblMail.setBounds(10, 276, 113, 14);
 		panel.add(lblMail);
 		
-		lblCumpleaños = new JLabel("Cumplea\u00F1os");
-		lblCumpleaños.setBounds(10, 335, 113, 14);
-		panel.add(lblCumpleaños);
+		lblNacimiento = new JLabel("Cumplea\u00F1os");
+		lblNacimiento.setBounds(10, 335, 113, 14);
+		panel.add(lblNacimiento);
 		
 		lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(10, 391, 113, 14);
@@ -161,11 +158,11 @@ public class VentanaPersona extends JFrame
 		panel.add(txtMail);
 		PromptSupport.setPrompt("nombre@dominio.com", txtMail);
 		
-		txtCumpleaños = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
-		txtCumpleaños.setColumns(10);
-		txtCumpleaños.setBounds(133, 332, 164, 20);
-		panel.add(txtCumpleaños);
-		PromptSupport.setPrompt("dd/mm/aaaa", txtCumpleaños);
+		txtNacimiento = new JTextField();
+		txtNacimiento.setColumns(10);
+		txtNacimiento.setBounds(133, 332, 164, 20);
+		panel.add(txtNacimiento);
+		PromptSupport.setPrompt("dd/mm/aaaa", txtNacimiento);
 	}
 
 	private void cmBoxes(JPanel panel) {
@@ -208,9 +205,9 @@ public class VentanaPersona extends JFrame
 	{
 		return txtMail;
 	}
-	public JTextField getTxtCumpleaños() 
+	public JTextField getTxtNacimiento() 
 	{
-		return txtCumpleaños;
+		return txtNacimiento;
 	}
 
 	public JButton getBtnGuardar() 

@@ -15,7 +15,7 @@ public class PersonaReporte implements Comparable<PersonaReporte>{
 	private String dpto;
 	private int localidad;
 	private String mail;
-	private Date cumpleaños;
+	private Date nacimiento;
 	private int tipo;
 	private String signoHoroscopoChino;
 	
@@ -30,110 +30,135 @@ public class PersonaReporte implements Comparable<PersonaReporte>{
 		this.setDpto(persona.getDpto());
 		this.setLocalidad(persona.getLocalidad());
 		this.setMail(persona.getMail());
-		this.setCumpleaños(persona.getCumpleaños());
+		this.setNacimiento(persona.getNacimiento());
 		this.setTipo(persona.getTipo());
 		this.setSignoHoroscopoChino(signo);
 	}
 
-	public int getIdPersona() {
+	public int getIdPersona() 
+	{
 		return idPersona;
 	}
 
-	public void setIdPersona(int idPersona) {
+	public void setIdPersona(int idPersona) 
+	{
 		this.idPersona = idPersona;
 	}
 
-	public String getNombre() {
+	public String getNombre() 
+	{
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) 
+	{
 		this.nombre = nombre;
 	}
 
-	public String getTelefono() {
+	public String getTelefono() 
+	{
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(String telefono) 
+	{
 		this.telefono = telefono;
 	}
 
-	public String getCalle() {
+	public String getCalle() 
+	{
 		return calle;
 	}
 
-	public void setCalle(String calle) {
+	public void setCalle(String calle) 
+	{
 		this.calle = calle;
 	}
 
-	public int getAltura() {
+	public int getAltura() 
+	{
 		return altura;
 	}
 
-	public void setAltura(int altura) {
+	public void setAltura(int altura) 
+	{
 		this.altura = altura;
 	}
 
-	public int getPiso() {
+	public int getPiso() 
+	{
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(int piso) 
+	{
 		this.piso = piso;
 	}
 
-	public String getDpto() {
+	public String getDpto() 
+	{
 		return dpto;
 	}
 
-	public void setDpto(String dpto) {
+	public void setDpto(String dpto) 
+	{
 		this.dpto = dpto;
 	}
 
-	public int getLocalidad() {
+	public int getLocalidad() 
+	{
 		return localidad;
 	}
 
-	public void setLocalidad(int localidad) {
+	public void setLocalidad(int localidad) 
+	{
 		this.localidad = localidad;
 	}
 
-	public String getMail() {
+	public String getMail() 
+	{
 		return mail;
 	}
 
-	public void setMail(String mail) {
+	public void setMail(String mail) 
+	{
 		this.mail = mail;
 	}
 
-	public Date getCumpleaños() {
-		return cumpleaños;
+	public Date getNacimiento() 
+	{
+		return nacimiento;
 	}
 
-	public void setCumpleaños(Date cumpleaños) {
-		this.cumpleaños = cumpleaños;
+	public void setNacimiento(Date nacimiento) 
+	{
+		this.nacimiento = nacimiento;
 	}
 
-	public int getTipo() {
+	public int getTipo() 
+	{
 		return tipo;
 	}
 
-	public void setTipo(int tipo) {
+	public void setTipo(int tipo) 
+	{
 		this.tipo = tipo;
 	}
 
-	public String getSignoHoroscopoChino() {
+	public String getSignoHoroscopoChino() 
+	{
 		return signoHoroscopoChino;
 	}
 
-	public void setSignoHoroscopoChino(String signoHoroscopoChino) {
+	public void setSignoHoroscopoChino(String signoHoroscopoChino) 
+	{
 		this.signoHoroscopoChino = signoHoroscopoChino;
 	}
 
 	@Override
-	public int compareTo(PersonaReporte persona) {
-		return this.cumpleaños.compareTo(persona.getCumpleaños());
+	public int compareTo(PersonaReporte persona) 
+	{
+		return this.nacimiento.compareTo(persona.getNacimiento());
 	}
 
 }

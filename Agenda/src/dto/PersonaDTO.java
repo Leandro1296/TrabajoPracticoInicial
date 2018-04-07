@@ -13,10 +13,10 @@ public class PersonaDTO
 	private String dpto;
 	private int localidad;
 	private String mail;
-	private Date cumpleaños;
+	private Date nacimiento;
 	private int tipo;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, Integer piso, String dpto, int localidad, String mail, Date cumpleaños, int tipo)
+	public PersonaDTO(int idPersona, String nombre, String telefono, String calle, int altura, Integer piso, String dpto, int localidad, String mail, Date nacimiento, int tipo)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -27,7 +27,7 @@ public class PersonaDTO
 		this.dpto = dpto;
 		this.localidad = localidad;
 		this.mail = mail;
-		this.cumpleaños = cumpleaños;
+		this.nacimiento = nacimiento;
 		this.tipo = tipo;
 	}
 	
@@ -109,12 +109,12 @@ public class PersonaDTO
 		this.mail = mail;
 	}
 
-	public Date getCumpleaños() {
-		return cumpleaños;
+	public Date getNacimiento() {
+		return nacimiento;
 	}
 
-	public void setCumpleaños(Date cumpleaños) {
-		this.cumpleaños = cumpleaños;
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
 	}
 
 	public int getTipo() {

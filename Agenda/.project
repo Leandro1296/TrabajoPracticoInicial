@@ -20,4 +20,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>com.jaspersoft.studio.babel.editor.rbeNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>ReporteAgenda.jrxml</name>
+			<type>1</type>
+			<location>C:/Users/Leito/AppData/Local/Temp/Rar$DRa0.993/Agenda/reportes/ReporteAgenda.jrxml</location>
+		</link>
+	</linkedResources>
 </projectDescription>
