@@ -34,37 +34,86 @@
 		<variableExpression><![CDATA[$F{signoHoroscopoChino}]]></variableExpression>
 	</variable>
 	<group name="Main">
-		<groupExpression><![CDATA[$F{signoHoroscopoChino}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="292">
+				<pieChart>
+					<chart evaluationTime="Report">
+						<reportElement x="55" y="32" width="452" height="240" uuid="9e909438-41ff-4afe-984f-e2ad383b9f91"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<keyExpression><![CDATA[$F{signoHoroscopoChino}]]></keyExpression>
+						<valueExpression><![CDATA[$V{Signos_COUNT}]]></valueExpression>
+					</pieDataset>
+					<piePlot labelFormat="{0} {2}">
+						<plot/>
+						<itemLabel/>
+					</piePlot>
+				</pieChart>
+				<line>
+					<reportElement x="-3" y="10" width="560" height="2" forecolor="#0A13C2" backcolor="#0810A3" uuid="75b961c9-ea94-4246-b621-aae963dac9bf"/>
+				</line>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="-2" y="290" width="560" height="2" forecolor="#0A13C2" backcolor="#0810A3" uuid="aac926e5-1937-4a6c-b22c-cffbb779c2da"/>
+				</line>
+			</band>
+		</groupFooter>
 	</group>
 	<group name="Signos">
 		<groupExpression><![CDATA[$F{signoHoroscopoChino}]]></groupExpression>
 		<groupHeader>
-			<band height="105">
+			<band height="117">
 				<rectangle>
-					<reportElement x="0" y="2" width="551" height="41" uuid="e9870e41-cc53-446e-b481-7f7f30f3514a"/>
+					<reportElement x="-10" y="2" width="567" height="41" forecolor="#000000" backcolor="#DE1B35" uuid="e9870e41-cc53-446e-b481-7f7f30f3514a"/>
 				</rectangle>
 				<textField>
 					<reportElement x="30" y="13" width="200" height="19" uuid="4f01095f-92ac-4ffe-aa73-1f970ed23618"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{signoHoroscopoChino}]]></textFieldExpression>
 				</textField>
+				<rectangle>
+					<reportElement x="-10" y="67" width="567" height="33" backcolor="#5CA5E0" uuid="4316b2d8-ad91-4798-bf72-69beb79d5b6a"/>
+				</rectangle>
 				<staticText>
 					<reportElement x="3" y="69" width="109" height="30" uuid="7ed33bd6-e0b9-400c-9f6f-80c1291fe836"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<text><![CDATA[Nombre y apellido]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="121" y="69" width="90" height="30" uuid="2fe914c2-a4d0-4cc8-8f4f-38feb90beb8e"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<text><![CDATA[Telefono]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="220" y="69" width="134" height="30" uuid="4d8c6281-1171-4257-928b-58d3da5d0f21"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<text><![CDATA[Mail]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="354" y="70" width="67" height="30" uuid="1359324b-8b77-4e9a-a45c-d6397abf6a78"/>
+					<reportElement x="355" y="70" width="115" height="30" uuid="1359324b-8b77-4e9a-a45c-d6397abf6a78"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<text><![CDATA[Fecha de nacimiento]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="439" y="70" width="115" height="30" uuid="97c506d0-71b2-4a99-a4fd-1d4bafc4355c"/>
+					<reportElement x="480" y="70" width="56" height="30" uuid="97c506d0-71b2-4a99-a4fd-1d4bafc4355c"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<text><![CDATA[Signo]]></text>
 				</staticText>
 			</band>
@@ -110,43 +159,55 @@
 	<pageHeader>
 		<band height="36" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="4" width="550" height="24" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
+				<reportElement mode="Opaque" x="-10" y="4" width="567" height="24" backcolor="#49D681" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
 				<staticText>
-					<reportElement x="3" y="2" width="160" height="20" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
-					<text><![CDATA[Reporte para el ejemplo Agenda]]></text>
+					<reportElement x="3" y="2" width="257" height="20" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
+					<text><![CDATA[Reporte de personas ordenadas por el horoscopo chino]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="17" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
 		<band height="50" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="10" width="112" height="30" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="121" y="11" width="90" height="29" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="221" y="11" width="133" height="29" uuid="50ef06c2-ec88-4b28-a808-325a76bfe1ab"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{mail}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="354" y="10" width="67" height="30" uuid="44dfc3ae-183d-4fae-a386-a38d9816c8be"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression><![CDATA[DATEFORMAT($F{nacimiento},"dd/MM/yyyy")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="439" y="10" width="115" height="30" uuid="c5022ebe-6a4c-4b53-a9c1-4c62e4013faf"/>
+				<reportElement x="480" y="10" width="74" height="30" uuid="c5022ebe-6a4c-4b53-a9c1-4c62e4013faf"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{signoHoroscopoChino}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="49" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
 				<reportElement x="355" y="0" width="100" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
 				<textElement textAlignment="Right"/>
@@ -159,24 +220,4 @@
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="282">
-			<pieChart>
-				<chart evaluationTime="Report">
-					<reportElement x="80" y="20" width="400" height="250" uuid="ab2199dd-d5d1-4fc8-aa2c-6ab13c74ea87"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<pieDataset>
-					<keyExpression><![CDATA[$F{signoHoroscopoChino}]]></keyExpression>
-					<valueExpression><![CDATA[$V{Signos_COUNT}]]></valueExpression>
-				</pieDataset>
-				<piePlot labelFormat="{0} {2}">
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
-		</band>
-	</summary>
 </jasperReport>

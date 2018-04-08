@@ -48,7 +48,7 @@ public class HoroscopoChino
 				{
 					listaOrdenada.add(personaHorocopoChinoList.get(i));
 				}
-				else if (j==1 && signo.equals("Gallo")) 
+				else if (j==1 && signo.equals("Perro")) 
 				{
 					listaOrdenada.add(personaHorocopoChinoList.get(i));
 				}
